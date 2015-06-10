@@ -1,0 +1,22 @@
+To get started with learnyounode, install using
+
+npm install -g learnyounode
+
+1 Hello World - 
+Make a file,
+add console.log('HELLO WORLD') and save
+Run the file using node filename and verify.
+
+2 Baby Steps - 
+Several ways are available to do this but using a loop is easiest,
+as before have a file made and opened, my solution is similar to the 
+official one which opens when completed. This is the official completion
+var result = 0
+
+for (var i = 2; i < process.argv.length; i++)
+  result += Number(process.argv[i])
+
+console.log(result)
+
+******* There are other solutions involving slice which should be investigated.
+
