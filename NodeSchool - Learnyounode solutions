@@ -37,4 +37,5 @@ var contents = fs.readFileSync(filename).toString();
 console.log(contents.split('\n').length - 1);
 
 where you have included the fs module, taken in the file, converted to string and then split 
-and sent to the console.
+and sent to the console. The process.argv has a 2 because the test file is located as the third
+item and arrays are zero indexed. This can be checked by passing the process.argv to the console.
