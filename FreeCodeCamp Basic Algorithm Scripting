@@ -1,0 +1,9 @@
+Reverse a string -
+
+function reverseString(str) {
+  return str.split("").reverse().join("");
+}
+
+reverseString('hello');
+
+Basically you split the string, reverse it and then rejoin.
