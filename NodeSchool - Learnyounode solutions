@@ -7,6 +7,7 @@ Make a file,
 add console.log('HELLO WORLD') and save
 Run the file using node filename and verify.
 
+
 2 Baby Steps - 
 Several ways are available to do this but using a loop is easiest,
 as before have a file made and opened, my solution is similar to the 
@@ -20,3 +21,20 @@ console.log(result)
 
 ******* There are other solutions involving slice which should be investigated.
 
+
+
+3 My First IO - 
+Like before there are several solutions but the are parameters which must be followed 
+- fs module is required to be able to perform filesystem operations.
+- readFileSync is also needed as all fs module ops which are synchronous end with sync.
+The solution is - 
+var fs = require("fs");
+
+var filename = process.argv[2];
+
+var contents = fs.readFileSync(filename).toString();
+
+console.log(contents.split('\n').length - 1);
+
+where you have included the fs module, taken in the file, converted to string and then split 
+and sent to the console.
