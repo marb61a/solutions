@@ -39,3 +39,20 @@ console.log(contents.split('\n').length - 1);
 where you have included the fs module, taken in the file, converted to string and then split 
 and sent to the console. The process.argv has a 2 because the test file is located as the third
 item and arrays are zero indexed. This can be checked by passing the process.argv to the console.
+
+
+
+4 My First Async IO -
+This is almost the same as the previous exercise except that the file now needs to be handled
+asynchronously. This means that instead of fs.readFileSync() it will be fs.readFile() and instead
+of using a return value this needs to be obtained using a callback function. The solution is therefore this
+var fs = require("fs");
+
+var file = process.argv[2];
+
+fs.readFile(file, 'utf-8', function(err,file){
+    console.log(file.split('\n').length - 1);
+});
+
+As the documentation states 'utf-8' can be passed in as a parameter which means that you will get a string
+rather than a buffer.
