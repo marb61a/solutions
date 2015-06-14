@@ -1,9 +1,31 @@
-Reverse a string -
+1 Reverse a string - The solution is below
 
 function reverseString(str) {
   return str.split("").reverse().join("");
 }
-
 reverseString('hello');
 
 Basically you split the string, reverse it and then rejoin.
+
+
+2 Factorialize a Number - The solution is the following
+function factorialize(num) {
+  return (num < 2)?1:factorialize(num - 1)*num;
+}
+
+factorialize(5);
+
+
+3 Find the Longest Word in a String - This is a bit more complex but the solution is
+function findLongestWord(str) {
+  var arrayOfWords = str.split(' ');
+  var largestNum = 0;
+  for( var i in arrayOfWords){
+    if(arrayOfWords[i].length > largestNum){
+      largestNum = arrayOfWords[i].length;
+    }
+  }
+  return largestNum;
+}
+
+findLongestWord('The quick brown fox jumped over the lazy dog');
