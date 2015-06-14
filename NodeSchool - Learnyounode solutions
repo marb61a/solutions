@@ -88,3 +88,59 @@ passed in the filename the file extension matches then it is sent to the console
 *********************************************************************************************************
 Important - The challenge says that you must use Async IO
 *********************************************************************************************************
+
+
+6 Make it Modular - This level introduces the concept of modules, it is similar to the previous level and a lot
+of the code can be reused. There are a couple of important caveats, you can only print to the console from the 
+main file not from within the module file and the module file must do most of the work and that the function being 
+exported takes 3 arguments. There are also the usual standard conventions that are expected to be followed. With 
+that in mind the solution is this The main file is as ever program.js and had this code -
+
+var module = require('./module.js');
+var directoryPath = process.argv[2];
+var fileExtension = process.argv[3];
+ 
+module(directoryPath, fileExtension, function (err, files) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    files.forEach(function (el) {
+        console.log(el);
+    });
+});    
+    
+The module file which I just named module.js has this code -
+
+var fs = require("fs");
+var path = require("path");
+var files = [];
+
+module.exports = function(directoryPath, fileExtension, callback){
+
+    fs.readdir(directoryPath, function(err, files){
+        if(err){
+            return callback(err);
+        }
+        
+         files = files.filter(function (el) {
+            if (path.extname(el).slice(1) === fileExtension) {
+                return el;
+            }
+        });
+        
+        return callback(null, files);
+    });
+};
+
+As you can see it is indeed a lot like the previous challenge but this time a lot of work was hived off into 
+the module thus enabling reuse.
+
+
+
+
+
+
+
+
+
