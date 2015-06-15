@@ -137,7 +137,24 @@ As you can see it is indeed a lot like the previous challenge but this time a lo
 the module thus enabling reuse.
 
 
+7 HTTP-Client - This exercise asks that you write a program that performs an HTTP GET request to a
+URL provided to you as the first command-line argument. You will require the http module in order to
+proceed and like before using 'utf-8' as an argument means that strings are returned which is a cleaner
+solution. The solution is like this
 
+var http = require("http");
+var exerciseUrl = process.argv[2];
+
+http.get(exerciseUrl, function(res) {
+	res.setEncoding('utf8')
+	res.on('data', function(data) {
+		console.log(data)
+	})
+})
+
+As before the process.argv location is assigned to a variable and the passed into the get along with a
+function which sets the encoding to utf-8 to return a string. Using the res.on data is passed in and then
+on to the console.
 
 
 
