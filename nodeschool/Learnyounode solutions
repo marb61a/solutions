@@ -156,6 +156,32 @@ As before the process.argv location is assigned to a variable and the passed int
 function which sets the encoding to utf-8 to return a string. Using the res.on data is passed in and then
 on to the console.
 
+8 HTTP-Collect - This challenge is again somewhat similar to the previous one. You are asked to write a program 
+that performs an HTTP GET request to a URL provided to you as the first command-line argument. Collect all data 
+from the server (not just the first "data" event) and then write two lines to the console (stdout). The first line 
+you write should just be an integer representing the number of characters received from the server. The second line 
+ld contain the complete String of characters sent by the server. According to the documentation there are a couple
+of ways that the exercise can be completed, the first is to collect data across multiple "data" events and append 
+the results together prior to printing the output, this will have to have an end added so that when the stream ends
+the output can be written. The second solution offers the opportunity to use a third party solution and suggests a
+couple which would need to be installed and required. The solution I chose was the second one as it appears to be
+the cleaner, the solution is this - 
+
+var http = require("http");
+var exerciseUrl = process.argv[2];
+var bl = require("bl");
+
+http.get(exerciseUrl, function(res) {
+	res.pipe(bl(function(err, data) {
+		var str = data.toString();
+
+		console.log(str.length);
+		console.log(str);
+	}))
+});
+
+The syntax for using bl rather than concat-stream is slightly different but not that much so is easy to change.
+
 
 
 
