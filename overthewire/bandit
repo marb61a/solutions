@@ -1,3 +1,8 @@
 Bandit Solutions
 
-Level 0
+Level 0 -
+Simply ssh to bandit0@bandit.labs.overthewire.org using the password bandit0 and you are in the shell.
+
+Level 1 -
+Use ls to see files
+Use the cat command with filename to read the file and grab the password.
