@@ -6,3 +6,27 @@ Simply ssh to bandit0@bandit.labs.overthewire.org using the password bandit0 and
 Level 1 -
 Use ls to see files
 Use the cat command with filename to read the file and grab the password.
+
+Level 2 -
+According to the challenge there is a file called “-” in the home directory and it contains the password
+needed to get to the next level. The solution again is fairly simple, use the absolute path to get to the
+file, in this case the following works
+cat ./-
+
+Level 3 -
+This time the challenge is to read a file with spaces in it’s name, the simple way of doing this is to
+surround the filename with quotes like this
+cat "spaces in this filename"
+There is als0 another way which is a bit more complicated is this
+cat ./spaces\ in\ this\ filename
+where you use escape characters.
+
+Level 4 -
+This time the challenge is to find the password for the next level which is stored in a hidden file in the 
+inhere directory. Again this is fairly easy 
+using ls gives a listing but not of hidden files, -a is needed to see hidden files so
+ls -la
+and then there are a couple of options
+cat ./inhere/.hidden
+cat .hidden
+which are dependent on where you are in the file tree.
