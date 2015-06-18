@@ -17,9 +17,9 @@ Level 3 -
 This time the challenge is to read a file with spaces in it’s name, the simple way of doing this is to
 surround the filename with quotes like this
 cat "spaces in this filename"
-There is als0 another way which is a bit more complicated is this
+There is also another way which is a bit more complicated, it is this
 cat ./spaces\ in\ this\ filename
-where you use escape characters.
+where you use escape characters to direct cat.
 
 Level 4 -
 This time the challenge is to find the password for the next level which is stored in a hidden file in the 
@@ -30,3 +30,26 @@ and then there are a couple of options
 cat ./inhere/.hidden
 cat .hidden
 which are dependent on where you are in the file tree.
+
+Level 5 - According to the site the challalange is that the password for the next level is stored in the only 
+human-readable file in the inhere directory. there is an easy way to solve this -
+- go to the inhere directory
+- enter file ./* to see a files and types
+file07 is the only ascii text file that is human readable, cat it to see the password for the next level.
+
+***************************************************************************************************************
+Important - The overthewire site gives command that are useful for solutions but there is a command outside of
+these which can be used and that command is "strings". The “strings” command command will print any string it 
+finds which is human-readable and without any switch modifiers by default will only print strings of 4 bytes or 
+longer in length to the screen. This will solve the challenge as well as other listed solutions
+***************************************************************************************************************
+
+Level 6 - This challenge is very similar to the previous one. The password for the next level is stored in a file 
+somewhere under the inhere directory and has all of the following attributes: human-readable, 1033 bytes in size, 
+not executable. The solution is like the previous one, use the find command with the necessary filters, the 
+solution is
+
+find ./* -size 1033c -readable ! -perm /111 - from within the inhere directory, you may not need to include all of
+the filters but they are here. This will tell you that ./maybehere07/.file2 is the file that matches the criteria.
+Then simply cat the file to get the password.
+
