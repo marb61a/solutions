@@ -183,6 +183,37 @@ http.get(exerciseUrl, function(res) {
 The syntax for using bl rather than concat-stream is slightly different but not that much so is easy to change.
 
 
+9 Juggling Async - The documentation states that this is exactly the same as the previous problem but in this case 
+you will be provided with three URLs as the first three command-line arguments. Again like the previous case there
+are a couple of ways of doing this, I will stick to using bl like previously. The solution is this -
+
+var http = require('http');
+var bl = require("bl");
+
+var exerciseUrls = process.argv.slice(2);
+var results = [];
+var resultsCount = 0;
+
+exerciseUrls.forEach(function (url, i) {
+  http.get(url, function (response) {
+    response.setEncoding('utf8');
+
+    response.pipe(bl(function (err, data) {
+      results[i] = data.toString();
+      resultsCount++;
+
+      if (resultsCount === exerciseUrls.length) {
+        results.forEach(function (result) {
+          console.log(result);
+        });
+      }
+    }));    
+  });
+});
+
+Its similar to the official solution, make sure to include .toString as I was getting the buffer contents but it
+took me a little while to see what I was doing wrong.
+
 
 
 
