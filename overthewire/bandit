@@ -31,7 +31,7 @@ cat ./inhere/.hidden
 cat .hidden
 which are dependent on where you are in the file tree.
 
-Level 5 - According to the site the challalange is that the password for the next level is stored in the only 
+Level 5 - According to the site the challenge is that the password for the next level is stored in the only 
 human-readable file in the inhere directory. there is an easy way to solve this -
 - go to the inhere directory
 - enter file ./* to see a files and types
