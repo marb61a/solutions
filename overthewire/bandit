@@ -53,3 +53,13 @@ find ./* -size 1033c -readable ! -perm /111 - from within the inhere directory, 
 the filters but they are here. This will tell you that ./maybehere07/.file2 is the file that matches the criteria.
 Then simply cat the file to get the password.
 
+
+Level 7 - Again this challenge is similar to what has been done previously but as always there is an added layer of
+trickery as the levels go up. This time the file can be anywhere on the server, but we are given it’s attributes. 
+As you would expect the find command will have to be used in order to get to our file. The solution (one of many) -
+
+find / -type f -user bandit7 -group bandit6 -size 33c
+This returns a file here
+/var/lib/dpkg/info/bandit7.password
+Run cat on the file and the password
+
