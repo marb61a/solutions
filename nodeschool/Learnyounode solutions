@@ -216,5 +216,36 @@ took me a little while to see what I was doing wrong.
 
 
 
+10 Time Server - This time the challenge is to write a tcp time server tha should listen to TCP connections on the 
+port provided by the first argument to your program. For each connection you must write the current date & 24 hour 
+time in the format YYYY-MM-DD hh:mm. According to the documentation we need to use the net module from Node core 
+which has all the basic networking functions. The documentation also provides several hints which will help in
+solving the challenge. One additional caveat is that Month, day, hour and minute must be zero-filled to 2 integers
+for the solution to be valid. The solution is -
+
+var net = require('net');
+
+var server = net.createServer(function (socket) {
+  socket.end(atPresent() + "\n"); 
+    });
+server.listen(process.argv[2]);    
+
+function zeroFilled(i){
+  return (i < 10 ? '0' : '') + i;
+}
+
+function atPresent(){
+  var d = new Date();
+  return d.getFullYear() + '-'
+  + zeroFilled(d.getMonth() + 1) + '-'
+  + zeroFilled(d.getDate()) + ' '
+  + zeroFilled(d.getHours()) + ':'
+  + zeroFilled(d.getMinutes());
+}
+
+As you will see pretty much all that was needed was given in the documentation such as the get methods, the server
+method and the requirement. The documentation also says that there is another seperate solution which is to use 
+the strftime package from npm but I don't know much about that so I kept using the Date() which the documentation
+tells us to use as well as its methods.
 
 
