@@ -10,4 +10,9 @@ var fileNeeded = process.argv[2];
 
 fs.createReadStream(fileNeeded).pipe(process.stdout);
 
-There are various combinations of the above foe solving the problem but this is mine.
+There are various combinations of the above for solving the problem but this is mine.
+
+Level 03 - The challenge is to take data from `process.stdin` and pipe it to `process.stdout`. The documentation
+also warns against overthinking the problem. The solution itself is fairly easy
+
+process.stdin.pipe(process.stdout);
