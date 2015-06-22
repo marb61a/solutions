@@ -28,12 +28,10 @@ Like before there are several solutions but the are parameters which must be fol
 - fs module is required to be able to perform filesystem operations.
 - readFileSync is also needed as all fs module ops which are synchronous end with sync.
 The solution is - 
+
 var fs = require("fs");
-
 var filename = process.argv[2];
-
 var contents = fs.readFileSync(filename).toString();
-
 console.log(contents.split('\n').length - 1);
 
 where you have included the fs module, taken in the file, converted to string and then split 
@@ -297,3 +295,42 @@ server.listen(portNum);
 As you can see there is little difference to a lot of what has been done previously, the methods needed are shown
 in the documentation and using them and the needed requirements along with previous code means that this solution
 is fairly quick.
+
+
+13 HTTP Json Api Server - This is the final challenge which asks you to write an HTTP server that serves JSON data 
+when it receives a GET request to the path '/api/parsetime'. You are also told to expect the request to contain a 
+query string with a key 'iso' and an ISO-format time as the value. There are further instructions to follow which
+are that the JSON response should contain only 'hour', 'minute' and 'second' properties. The final instruction is
+to add second endpoint for the path '/api/unixtime' which accepts the same query string but returns UNIX epoch 
+time in milliseconds. There are several hints given including the need to require url including the need to be a 
+good citizen and set the Content-Type properly this means that we canmake use of a lot of previous code so the 
+solution will look like this  
+
+var http = require("http");
+var portNum = process.argv[2];
+var url = require("url");
+
+var server = http.createServer(function(req, res){
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  var parsedUrl = url.parse(req.url, true);
+  var d = new Date(parsedUrl.query.iso);
+  if(parsedUrl.pathname === '/api/parsetime'){
+    res.write(JSON.stringify({
+      hour : d.getHours(),
+      minute : d.getMinutes(),
+      second : d.getSeconds()
+    }));
+  } else if(parsedUrl.pathname === '/api/unixtime'){
+    res.write(JSON.stringify({
+      unixtime : d.getTime()
+    }));
+  }
+  
+  res.end();
+});
+server.listen(portNum);
+
+As you can see I have used lots of previously challenges as the basis for this and followed the same conventions,
+when I combined this with all of the hints and documentation such as the pathnames, the writehead and the Json
+stringify the challenge was 99% done.
+
