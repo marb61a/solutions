@@ -270,3 +270,27 @@ server.listen(portNum);
 As you can see we have like before required http and fs, like before assigned the process arguments to variables.
 The rest is easy as the documentation tells you to use createReadStream which can only take the file inputted which
 is then piped out to the appropriate port.
+
+
+
+12 HTTP Uppercaserer - This is the penultimate challenge, the challenge that you are asked is to write an HTTP 
+server that receives only POST requests and converts incoming POST body characters to upper-case and returns it to 
+the client. The server should listen on the port provided by the first argument to your program. Also it is
+suggested that you make use of the through2-map package as it has the simplest api. The previous exercises and
+the documentation combined give a fair idea of what is required so here is my solution
+
+var http = require("http");
+var portNum = process.argv[2];
+var map = require('through2-map');
+
+var server = http.createServer(function (req, res) {
+      req.pipe(map(function(chunk){
+        return chunk.toString().toUpperCase();
+      })).pipe(res);
+    });    
+
+server.listen(portNum);
+
+As you can see there is little difference to a lot of what has been done previously, the methods needed are shown
+in the documentation and using them and the needed requirements along with previous code means that this solution
+is fairly quick.
