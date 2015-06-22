@@ -46,8 +46,8 @@ item and arrays are zero indexed. This can be checked by passing the process.arg
 This is almost the same as the previous exercise except that the file now needs to be handled
 asynchronously. This means that instead of fs.readFileSync() it will be fs.readFile() and instead
 of using a return value this needs to be obtained using a callback function. The solution is therefore this
-var fs = require("fs");
 
+var fs = require("fs");
 var file = process.argv[2];
 
 fs.readFile(file, 'utf-8', function(err,file){
@@ -64,6 +64,7 @@ This asks you to print a list of files from a given directory. The fs.readdir() 
 a pathname as its first argument and a callback function as its second. The documentation also suggests using 
 the path module and the first argument will be the directory name and then the extension which will need to be 
 matched e.g. if files end in .txt then it will need to be filtered using .txt  The solution is this
+
 var fs = require("fs");
 var path = require("path");
 var directoryPath = process.argv[2];
@@ -156,6 +157,8 @@ As before the process.argv location is assigned to a variable and the passed int
 function which sets the encoding to utf-8 to return a string. Using the res.on data is passed in and then
 on to the console.
 
+
+
 8 HTTP-Collect - This challenge is again somewhat similar to the previous one. You are asked to write a program 
 that performs an HTTP GET request to a URL provided to you as the first command-line argument. Collect all data 
 from the server (not just the first "data" event) and then write two lines to the console (stdout). The first line 
@@ -216,7 +219,7 @@ took me a little while to see what I was doing wrong.
 
 
 
-10 Time Server - This time the challenge is to write a tcp time server tha should listen to TCP connections on the 
+10 Time Server - This time the challenge is to write a tcp time server that should listen to TCP connections on the 
 port provided by the first argument to your program. For each connection you must write the current date & 24 hour 
 time in the format YYYY-MM-DD hh:mm. According to the documentation we need to use the net module from Node core 
 which has all the basic networking functions. The documentation also provides several hints which will help in
