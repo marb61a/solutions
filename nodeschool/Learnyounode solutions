@@ -332,5 +332,10 @@ server.listen(portNum);
 
 As you can see I have used lots of previously challenges as the basis for this and followed the same conventions,
 when I combined this with all of the hints and documentation such as the pathnames, the writehead and the Json
-stringify the challenge was 99% done.
+stringify the challenge was 99% done. Essentially the solution is that as usual the requirements were sorted and
+the listening port for the server assigned to a variable. The server was then created and straight away I decided
+to implement the writehead request, then following the appropriate format I assigned the url to be parsed to a 
+variable. As stated by the documentation any date would have iso and so that was input into date and as usual it
+was assigned to a variable. There was only 1 thing to do and that was to check if the url had parsetime or unixtime
+as required by the challenge and use Json.stringify on the results which meant that the challenge was solved.
 
