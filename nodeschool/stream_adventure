@@ -12,7 +12,23 @@ fs.createReadStream(fileNeeded).pipe(process.stdout);
 
 There are various combinations of the above for solving the problem but this is mine.
 
-Level 03 - The challenge is to take data from `process.stdin` and pipe it to `process.stdout`. The documentation
+Level 03 Input Output -
+The challenge is to take data from `process.stdin` and pipe it to `process.stdout`. The documentation
 also warns against overthinking the problem. The solution itself is fairly easy
 
 process.stdin.pipe(process.stdout);
+
+Level 04 Transform -
+This time the challenge is to create a through stream with a `write` and `end` function. As with all of these
+challenges each level builds on the previous and usually combining this with the hints get you close to solving the
+challenge, with this in mind the solution is
+
+var through = require("through");
+var transformStream = through (function(buffer){
+    this.queue(buffer.toString().toUpperCase());
+});    
+
+process.stdin.pipe(transformStream).pipe(process.stdout);
+
+One note is that the official solution has through2 as a variable but for some reason that solution does not work 
+for me ????
