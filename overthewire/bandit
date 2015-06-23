@@ -3,15 +3,21 @@ Bandit Solutions
 Level 0 -
 Simply ssh to bandit0@bandit.labs.overthewire.org using the password bandit0 and you are in the shell.
 
+
+
 Level 1 -
 Use ls to see files
 Use the cat command with filename to read the file and grab the password.
+
+
 
 Level 2 -
 According to the challenge there is a file called “-” in the home directory and it contains the password
 needed to get to the next level. The solution again is fairly simple, use the absolute path to get to the
 file, in this case the following works
 cat ./-
+
+
 
 Level 3 -
 This time the challenge is to read a file with spaces in it’s name, the simple way of doing this is to
@@ -20,6 +26,8 @@ cat "spaces in this filename"
 There is also another way which is a bit more complicated, it is this
 cat ./spaces\ in\ this\ filename
 where you use escape characters to direct cat.
+
+
 
 Level 4 -
 This time the challenge is to find the password for the next level which is stored in a hidden file in the 
@@ -30,6 +38,8 @@ and then there are a couple of options
 cat ./inhere/.hidden
 cat .hidden
 which are dependent on where you are in the file tree.
+
+
 
 Level 5 - According to the site the challenge is that the password for the next level is stored in the only 
 human-readable file in the inhere directory. there is an easy way to solve this -
@@ -44,6 +54,8 @@ finds which is human-readable and without any switch modifiers by default will o
 longer in length to the screen. This will solve the challenge as well as other listed solutions
 ***************************************************************************************************************
 
+
+
 Level 6 - This challenge is very similar to the previous one. The password for the next level is stored in a file 
 somewhere under the inhere directory and has all of the following attributes: human-readable, 1033 bytes in size, 
 not executable. The solution is like the previous one, use the find command with the necessary filters, the 
@@ -52,6 +64,7 @@ solution is
 find ./* -size 1033c -readable ! -perm /111 - from within the inhere directory, you may not need to include all of
 the filters but they are here. This will tell you that ./maybehere07/.file2 is the file that matches the criteria.
 Then simply cat the file to get the password.
+
 
 
 Level 7 - Again this challenge is similar to what has been done previously but as always there is an added layer of
@@ -63,3 +76,22 @@ This returns a file here
 /var/lib/dpkg/info/bandit7.password
 Run cat on the file and the password
 
+
+
+Level 8 - For this challenge the password needed for the next level is stored in the file data.txt next to the word 
+millionth. This means that we can pipe cat to grep to solve this. This solution is this
+
+cat data.txt | grep millionth
+
+The grep command is a pattern matching command and is very useful.
+
+
+
+Level 9 - In this particular challenge there isa need to find a unique line among many. The quickes and easiest
+solution is to pipe a few commands together to do this and they do need to be in proper order.
+
+cat data.txt | sort | uniq -u
+
+This simply performs cat on the file and pipes it into the command “sort” which then pipes the output from sort 
+into the command “uniq” with the switch operator “-u” to find the unique string. This should illustrate the
+importance of the proper ordering of commands
