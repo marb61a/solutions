@@ -1,1 +1,11 @@
 These are the solutions for the OverTheWire Leviathan Wargame.
+
+Level 0 - This involves just using the user name and password in order to ssh connect to the overthewire labs
+
+Level 0 - 1 - The first challenge involves finding a password. As on other challenges it does well to remember that
+finetuning commands gives better visibility on what is around. With this in mind the solution is
+
+ls -la - This shows a hidden directory (hidden entities have a dot in front of them) called .backup,
+cd .backup - going into the directory  
+ls -la - shows that there is a file called bookmarks.html
+cat bookmarks.html | grep password - will search the file for the password.
