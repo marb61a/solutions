@@ -1,3 +1,10 @@
 These are my solutions to the Nodeschool Functional Javascript Challenges
 
-Level 1 -
+Level 1 - Hello World -
+As usual the first level is fairly easy which in this case is to take an input string and return it uppercased. This
+is the solution although there are more ways to do the same.
+
+module.exports = function upperCaser(input) {
+      // SOLUTION GOES HERE
+      return input.toUpperCase();
+    };
