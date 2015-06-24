@@ -1,6 +1,6 @@
 These are my solutions to the Nodeschool Functional Javascript Challenges
 
-Level 1 - Hello World -
+Level 1 Hello World -
 As usual the first level is fairly easy which in this case is to take an input string and return it uppercased. This
 is the solution although there are more ways to do the same.
 
@@ -8,3 +8,33 @@ module.exports = function upperCaser(input) {
       // SOLUTION GOES HERE
       return input.toUpperCase();
     };
+
+
+
+Level 2 - Higher Order Functions -
+The second challenge is about how javascript handles functions particularly compared to other languages. You are asked
+to implement a function that takes a function as its first argument, a number num as its second argument, then 
+executes the passed in function num times. As before you are warned not to overthink the solution and again there is
+boilerplate code provided. This is the solution I used
+
+module.exports = function repeat (operation, num){
+      if(num === 0){
+            return;
+      }
+      operation();
+      return repeat(operation, num -1);
+};
+
+There are other similar ways to solve this including assigning a variable to the function and then calling like this
+
+function repeat (operation, num){
+      if(num === 0){
+            return;
+      }
+      operation();
+      return repeat(operation, num -1);
+}
+
+module.exports = repeat;
+
+Both of these and several others are equally valid.
