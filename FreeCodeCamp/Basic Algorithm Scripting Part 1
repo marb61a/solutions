@@ -121,8 +121,10 @@ palindrome("eye");
 Again regex is used but similar to other challenges the string is split but this time it is reversed and rejoined
 after which a comparison is made to the original. If they are equal then the challenge is solved.
 
+
+
 8 Sum all the numbers in a range - This challenge took me a long time as there are several ways to do this and I
-am not that familiar with the array.reduce function. The solution is this
+am not that familiar with the array.reduce function so I did not use it. The solution I used is this
 
 function sumAll(arr) {
   
