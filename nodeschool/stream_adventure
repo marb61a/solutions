@@ -32,3 +32,25 @@ process.stdin.pipe(transformStream).pipe(process.stdout);
 
 One note is that the official solution has through2 as a variable but for some reason that solution does not work 
 for me ????
+
+Level 05 Lines -
+In the fifth challenge we are asked to write a solution to a challenge which is identical to the previous one but
+with one important twist which is to convert even-numbered lines to upper-case and odd-numbered lines to lower-case.
+We may also consider the first line to be odd-numbered. We also have to install split through2 to the directory. As
+this is similar to the previous challeng we should be able to use a lot of the code and the documentation gives a
+good hint as to where to proceed from, my solution is this
+
+var through = require("through");
+var split = require('split');
+var newlines = 1;
+
+var transformStream = through(function write(buffer){
+    this.queue(buffer.toString()[
+        newlines++ % 2 === 0? 'toUpperCase' : 'toLowerCase'
+        ]() + '\n');
+});
+process.stdin.pipe(split()).pipe(transformStream).pipe(process.stdout);
+
+As you can see I made use of the previous challenges code and also the hints, I was torn about using if else or a
+ternary statement in combination with the modulus either one will do as will other methods.
+
