@@ -1,17 +1,17 @@
 These are my solutions to the Nodeschool Functional Javascript Challenges
 
-Level 1 Hello World -
+Level 01 Hello World -
 As usual the first level is fairly easy which in this case is to take an input string and return it uppercased. This
 is the solution although there are more ways to do the same.
 
 module.exports = function upperCaser(input) {
-      // SOLUTION GOES HERE
+     
       return input.toUpperCase();
     };
 
 
 
-Level 2 - Higher Order Functions -
+Level 02 - Higher Order Functions -
 The second challenge is about how javascript handles functions particularly compared to other languages. You are asked
 to implement a function that takes a function as its first argument, a number num as its second argument, then 
 executes the passed in function num times. As before you are warned not to overthink the solution and again there is
@@ -38,3 +38,20 @@ function repeat (operation, num){
 module.exports = repeat;
 
 Both of these and several others are equally valid.
+
+
+Level 03 Basic Map -
+In this challenge the task is to convert a for loop into an Array Map. There is as standard boilerplate code that
+you must use. There are also 3 conditions that must be followed, Your solution should use Array.prototype.map(), do 
+not use any for/while loops or Array.prototype.forEach and do not create any unecessary functions e.g. helpers. The
+for loop itself basically multiplies the numbers that it gets by 2. The solution is this
+
+function doubleAll(numbers) {
+      return numbers.map(function(num){
+            return num * 2;
+      });
+    }
+    
+module.exports = doubleAll;
+
+Its easy enough to follow and shows the value of things like map.
