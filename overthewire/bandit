@@ -95,3 +95,26 @@ cat data.txt | sort | uniq -u
 This simply performs cat on the file and pipes it into the command “sort” which then pipes the output from sort 
 into the command “uniq” with the switch operator “-u” to find the unique string. This should illustrate the
 importance of the proper ordering of commands
+
+
+
+Level 10 - This challenge is very similar to the preceeding couple of challenges, in this particular challenge the
+goal is as usual to get the password needed for the next level which in this case is stored in the file data.txt 
+among a few lines of human-readable strings starting with ‘=’ characters. Again proper use of grep will be key here
+so the solution will be 
+
+strings data.txt | grep =
+
+The order of the commands is imporant again as the file is a binary file and cannot be easily grepped however by
+using strings and then grep it will enable the password to be seen.
+
+
+
+Level 11 - Similar to the previous level the needed data is stored in a file called data.txt, this challenge is a
+step up though as there is a type of encoding called base64 used to encode the data. This means that there will be
+a decoding of the data needed. Luckily enough Linux has a facility for decoding this data so the solution will be
+
+base64 -d data.txt 
+
+Base64 encoding is used in many different places and in lots of different computer languages, there are also a 
+multitude of tutorials available which should be looked at.
