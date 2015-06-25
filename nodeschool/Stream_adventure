@@ -4,6 +4,8 @@ Level 01  Beep Boop -
 This is a simple challenge to get started, write a program the outpus beep boop to the console
 console.log('beep boop');
 
+
+
 Level 02  Meet Pipe -
 var fs = require("fs");
 var fileNeeded = process.argv[2];
@@ -12,11 +14,15 @@ fs.createReadStream(fileNeeded).pipe(process.stdout);
 
 There are various combinations of the above for solving the problem but this is mine.
 
+
+
 Level 03 Input Output -
 The challenge is to take data from `process.stdin` and pipe it to `process.stdout`. The documentation
 also warns against overthinking the problem. The solution itself is fairly easy
 
 process.stdin.pipe(process.stdout);
+
+
 
 Level 04 Transform -
 This time the challenge is to create a through stream with a `write` and `end` function. As with all of these
@@ -32,6 +38,9 @@ process.stdin.pipe(transformStream).pipe(process.stdout);
 
 One note is that the official solution has through2 as a variable but for some reason that solution does not work 
 for me ????
+
+
+
 
 Level 05 Lines -
 In the fifth challenge we are asked to write a solution to a challenge which is identical to the previous one but
@@ -54,3 +63,20 @@ process.stdin.pipe(split()).pipe(transformStream).pipe(process.stdout);
 As you can see I made use of the previous challenges code and also the hints, I was torn about using if else or a
 ternary statement in combination with the modulus either one will do as will other methods.
 
+
+
+Level 06 Concat -
+At first glance this exercise appears to be the same as one from the learnyounode challenges but in this you must
+use concat-stream rather than the choice of concat stream or bl. The challenge is described by the documents as this,
+you will be given text on process.stdin, you will have to buffer the text and reverse it using the `concat-stream` 
+module before writing it to stdout. As I have done similar before there is a lot of code I can reuse along with the
+boilerplate hints provided. This is my solution
+
+var concat = require('concat-stream');
+
+process.stdin.pipe(concat(function(body){
+    process.stdout.write(body.toString().split('').reverse().join(''));
+}));
+
+Again as you can see a lot of stuff is the same as other solutions, in the body the string is split, reversed and
+then it is rejoined. These are all functions that are available in javascript.
