@@ -55,3 +55,29 @@ function doubleAll(numbers) {
 module.exports = doubleAll;
 
 Its easy enough to follow and shows the value of things like map.
+
+
+
+
+Level 04 - Basic Filter
+According to the documentation the challange on this level is to use Array#filter to write a function called 
+getShortMessages. The getShortMessages function takes an array of objects with '.message' properties and returns 
+an array of messages that are less than < 50 characters long. The function should also return an array containing 
+the messages themselves, without their containing object. Ther is some boilerplate code attached that we must use
+and we are told not to use unnecessary loops etc and to try using chaining array methods. The solution should look
+like this
+
+module.exports = function getShortMessages(messages){
+      var messageFilter = messages.filter(function(msg){
+            if(msg.message && msg.message.length < 50){
+                  return messages;
+            }
+      });
+      
+      return messageFilter.map(function(msg){
+            return msg.message;
+      });
+};
+
+I had to get some help with this as I was not returning properly in the map function, I was returning messages when
+is should have been the singular.
