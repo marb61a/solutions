@@ -80,3 +80,30 @@ process.stdin.pipe(concat(function(body){
 
 Again as you can see a lot of stuff is the same as other solutions, in the body the string is split, reversed and
 then it is rejoined. These are all functions that are available in javascript.
+
+
+
+Level 07 HTTP Server - In this level we are told that the challenge is to write an http server that uses a through 
+stream to write back the request stream as upper-cased response data for POST requests. This builds upon previous
+exercises and compares to other nodeschool sections. Again we will make use of what we have written previously and
+also the hints given. The solution should be like this 
+
+var http = require("http");
+var through = require("through");
+var portNum = process.argv[2];
+var fs = require("fs");
+
+var to_uppercase = function(buffer){
+    this.queue(buffer.toString().toUpperCase());
+};
+
+var server = http.createServer(function (req, res) {
+        if (req.method === 'POST') {
+            req.pipe(through(to_uppercase)).pipe(res);
+        }
+       
+    });
+
+server.listen(portNum);
+
+As you can see this is a combination of previous code and code from both the hints and other nodeschool sections.
