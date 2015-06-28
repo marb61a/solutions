@@ -81,3 +81,27 @@ module.exports = function getShortMessages(messages){
 
 I had to get some help with this as I was not returning properly in the map function, I was returning messages when
 is should have been the singular.
+
+
+
+Level 05 - Every Some -
+In this challenge we are asked to return a function that takes a list of valid users, and returns a function that 
+returns true if all of the supplied users exist in the original list of users. As is usual there is boilerplate code
+supplied and we are told that we only need to check that the ids match. We are alos given the standard warnings
+about unnecessary code etc. This challenge also uses the every() method which returns true eturns true if every 
+element in the list satisfies the provided testing function, this is also related to the some() method tests whether 
+some element in the array passes the test implemented by the provided function. The solution is essentially just a
+set of returning functions provideing a scondition is met, here it is
+
+module.exports = function checkUsersValid(goodUsers){
+      return function allUsersValid(submittedUsers){
+            return submittedUsers.every(function(submittedUser){
+                 return goodUsers.some(function(goodUser){
+                       return goodUser.id === submittedUser.id;
+                 }) ;
+            });
+      };
+};
+
+The majority of the code is given in the documentation and then the condition is too which means that it is only the
+every and some functions which need to be implemented. 
