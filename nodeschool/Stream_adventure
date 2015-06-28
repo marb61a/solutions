@@ -107,3 +107,19 @@ var server = http.createServer(function (req, res) {
 server.listen(portNum);
 
 As you can see this is a combination of previous code and code from both the hints and other nodeschool sections.
+
+
+
+
+Level 08 HTTP Client
+In this challenge we are asked to send an HTTP POST request to http://localhost:8099 and pipe process.stdin into
+it.and then pipe the response stream to process.stdout. There are several hints on how to approach this problem
+and there is also some code samples which can be used to do the challenge. There are a few different solutions
+but this is mine
+
+var request = require("request");
+var reqPost = request.post('http://localhost:8099');
+
+process.stdin.pipe(reqPost).pipe(process.stdout);
+
+As you can see it is very similar to previous code.
