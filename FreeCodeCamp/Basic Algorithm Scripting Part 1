@@ -147,3 +147,32 @@ cleanest I can manage, essentially set up an empty array to hold the list of num
 min and maximum values of the ranges to variables. Initialise another variable this time to zero use this variable
 as the return value from a for loop where you have iterated and incremented through the needed values.
 
+
+
+9 Repeat a string -
+The challenge is to repeat a string a certain amount of times, the solution is a quick if\else statement
+
+function repeat(str, num) {
+  if(num > 0){
+    str = str.repeat(num);
+  }else{
+    str = '';
+  }
+  return str;
+}
+
+repeat('abc', 3);
+
+
+
+10 Slasher Flick -
+The goal of this challenge is to in the site words return the remaining elements of an array after chopping off n 
+elements from the head. The easiest is to use the slice function and use the howMany variable to see what amount
+is to be chopped of the array.
+
+function slasher(arr, howMany) {
+  var slicedArray = arr.slice(howMany);
+  return slicedArray;
+}
+
+slasher([1, 2, 3], 2);
