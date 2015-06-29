@@ -83,10 +83,11 @@ then it is rejoined. These are all functions that are available in javascript.
 
 
 
-Level 07 HTTP Server - In this level we are told that the challenge is to write an http server that uses a through 
-stream to write back the request stream as upper-cased response data for POST requests. This builds upon previous
-exercises and compares to other nodeschool sections. Again we will make use of what we have written previously and
-also the hints given. The solution should be like this 
+Level 07 HTTP Server - 
+In this level we are told that the challenge is to write an http server that uses a through stream to write back 
+the request stream as upper-cased response data for POST requests. This builds upon previous exercises and compares 
+to other nodeschool sections. Again we will make use of what we have written previously and also the hints given. 
+The solution should be like this 
 
 var http = require("http");
 var through = require("through");
@@ -111,7 +112,7 @@ As you can see this is a combination of previous code and code from both the hin
 
 
 
-Level 08 HTTP Client
+Level 08 HTTP Client -
 In this challenge we are asked to send an HTTP POST request to http://localhost:8099 and pipe process.stdin into
 it.and then pipe the response stream to process.stdout. There are several hints on how to approach this problem
 and there is also some code samples which can be used to do the challenge. There are a few different solutions
@@ -123,3 +124,17 @@ var reqPost = request.post('http://localhost:8099');
 process.stdin.pipe(reqPost).pipe(process.stdout);
 
 As you can see it is very similar to previous code.
+
+
+
+
+Level 09 Websockets -
+In this the ninth challenge we are simply asked to  write some browser code that uses the websocket-stream module
+to print the string "hello\n". The solution is
+
+var ws = require('websocket-stream');
+var stream = ws('ws://localhost:8099');
+
+stream.write('hello\n');
+
+This is the same as the official solution but there are more ways to do this such as stream.end.
