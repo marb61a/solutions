@@ -1,0 +1,11 @@
+These are the solutions for the natas game on overthewire. Natas is mostly about web security.
+
+Level 0 - 
+You are given the username and password for this level however you need to find the password which is on the page. The
+solution is quite straight forward. Right click and select view source and you will see the password.
+
+Level 1 - 
+This is the same as previous but the right click has been disabled. In most browsers ctrl+u will bring up
+the view source page so another quick solution.
+
+Level 2 -
