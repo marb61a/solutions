@@ -105,3 +105,27 @@ module.exports = function checkUsersValid(goodUsers){
 
 The majority of the code is given in the documentation and then the condition is too which means that it is only the
 every and some functions which need to be implemented. 
+
+
+
+
+Level 06 Basic Reduce -
+In this challenge the task is given an Array of strings, use Array#reduce to create an object that contains the 
+number of times each string occured in the array and is it necessary to return the object directly. There is as 
+usual boilerplate code and warnings. The syntax for array.reduce is array.reduce(callback[, initialValue]); where
+callback is the function to execute on each value in the array and initialValue is an object to use as the first 
+argument to the first call of the callback. All that being said the solution should look like this
+
+module.exports = function countWords(inputWords) {
+      return inputWords.reduce(function(totalWords, singleWord){
+            if(totalWords[singleWord]){
+                  totalWords[singleWord] +=1;
+            }else{
+                  totalWords[singleWord] = 1;
+            }
+            return totalWords;
+      }, {});
+    };
+    
+ Granted this is not the most imaginative solution but it worked in the end as I had trouble due to missing curly 
+ brackets at the end which are important as the second argument to reduce initialises totalWords to {}.
