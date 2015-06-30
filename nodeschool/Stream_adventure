@@ -138,3 +138,26 @@ var stream = ws('ws://localhost:8099');
 stream.write('hello\n');
 
 This is the same as the official solution but there are more ways to do this such as stream.end.
+
+
+
+Level 10 HTML Stream -
+In this challenge you are asked to get some html written to stdin. Convert all the inner html to upper-case for 
+elements with a class name of "loud", and pipe all the html to stdout. For this challenge you are also told to 
+install trumpet and there is some sample code given which along with some code from above examples should prove
+useful. This is my solution
+
+var trumpet = require('trumpet');
+var through = require("through");
+var tr = trumpet();
+var loud = tr.createStream('.loud');
+
+var to_uppercase = function(buffer){
+    this.queue(buffer.toString().toUpperCase());
+};
+
+loud.pipe(through(to_uppercase)).pipe(loud);
+process.stdin.pipe(tr).pipe(process.stdout);
+
+As you can see I have reused a lot of previously written code, this along with the requirements and hints meant the
+challenge was just about done.
