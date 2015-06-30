@@ -129,3 +129,33 @@ module.exports = function countWords(inputWords) {
     
  Granted this is not the most imaginative solution but it worked in the end as I had trouble due to missing curly 
  brackets at the end which are important as the second argument to reduce initialises totalWords to {}.
+
+
+
+ Level 07 Basic Recursion -
+ In this the seventh challenge we are tole that point of this exercise is to familiarise yourself with recursion by
+ implementing a familiar interface using a recursive function. The task itself is to implement recursion using the
+ array#reduce which the site informs us will be used to test your reduce implementation to execute our solution to 
+ the previous basic_reduce problem. there is as always boilerplate code provided and the usual warnings about code 
+ are given. There is a sample recursive function among the documentation which along with the boilerplate code
+ should take us a long way towards a solution. My solution is
+ 
+ module.exports = function reduce(arr, fn, initial) {
+      if(!arr.length) {
+            return initial;
+      }else{
+            var head = arr[0];
+            var tail = arr.slice(1);
+            return reduce(tail, fn,  fn(initial, head));
+      }
+    };
+  
+  You will probably notice that the structure is the same as previous solutions, I combined this structure with the
+  sample function in the documentation and this gave the solution. The documentaion also gives a much better 
+  description of the function arguments than I so here they are.
+  * arr: An Array to reduce over
+  * fn: Function to use as the reduction step. Like regular Array#reduce, this function must be passed previousValue, 
+  currentValue, index and the array we're iterating over.
+  * init: Initial value of the reduction. Unlike Array#reduce, this value is required (and you may assume it will 
+  always be supplied).
+ 
