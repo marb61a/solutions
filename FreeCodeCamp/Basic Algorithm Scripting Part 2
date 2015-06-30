@@ -1,2 +1,37 @@
 This is Part 2 of my solutions to the FreeCodeCamp challenges. Like before these are not in the order they appear on
 the site.
+
+
+
+Roman Numeral Converter - I had to look this up online and although there are variations on a theme most revolve
+around the same solution
+
+function convert(num) {
+ var conversionSet = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
+ var romanNumerals = '';
+ var i;
+  
+ for(i in conversionSet){
+   while( num >= conversionSet[i]){
+     romanNumerals += i;
+     num -= conversionSet[i];
+   }
+ } 
+ return romanNumerals;
+}
+
+convert(36);
+
+The solutions I came across all had similar methods as above. Basically you can do it like this or have a list or
+dictionary with keys and values. Then there needs to be a couple of loops one to check the entered number against the
+list of values. The second loop will run the number through conversion, it will be easier to demonstrate.
+    36 is entered
+    40 is too big so 10 is chosen
+    10 is subtracted so it is now 26 which means that this needs to be repeated twice more
+    6 is then left and 5 is subtracted
+    1 is left
+    Because the romanNumeral variable was empty it has the values from the conversionSet added, this is then
+    sent to the screen and should be XXXVI
+As I said previously there are many solutions available and the freecodecamp site suggests using various array
+methods but of all the possible solutions I read and tried this one made the most sense to me and full credit goes
+to the guys whose solutions helped me with this.
