@@ -161,3 +161,25 @@ process.stdin.pipe(tr).pipe(process.stdout);
 
 As you can see I have reused a lot of previously written code, this along with the requirements and hints meant the
 challenge was just about done.
+
+
+
+
+Level 11 Duplexer -
+In this challenge we are asked to write a program that exports a function that spawns a process from a `cmd`
+string and an `args` array and returns a single duplex stream joining together the stdin and stdout of the spawned
+process. We are asked to install duplexer because according to the documentation the duplexer module exports a 
+single function `duplexer(writable, readable)` that joins together a writable stream and readable stream into a 
+single, readable/writable duplex stream. Taking pevious code and the hints and experience from other challenges the
+solution should be 
+
+var duplexer = require("duplexer");
+var spawn = require('child_process').spawn;
+
+module.exports = function(cmd, args){
+    var spawnedProcess = spawn(cmd, args);
+    return duplexer(spawnedProcess.stdin, spawnedProcess.stdout);
+};
+
+As is obvious there is not much that needs to be done but you can just setup the function and then export irt on a
+seperate line but this is cleaner.
