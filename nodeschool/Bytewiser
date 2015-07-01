@@ -1,0 +1,7 @@
+These are my solutions to the Nodeschool Bytewiser set of challanges.
+
+Level 1  Buffer From String -
+This is a simple challenge to get started which is to  write a node program that prints a buffer object containing
+the string "bytewiser" using console.log. The solution is fairly obvious 
+
+console.log(new Buffer("bytewiser"));
