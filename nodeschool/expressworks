@@ -1,0 +1,20 @@
+These are my solutions to the Nodeschool Expressworks exercises.
+
+Level 1 Hello World -
+The first exercise is as always an easy on we are asked to create an Express.js app that outputs "Hello World!" when 
+somebody goes to /home. Also there are a couple of directions given, the port number will be provided to you by 
+expressworks as the first argument of the application, ie. process.argv[2]. We are also asked to please use 
+process.argv[2] instead of a fixed port number. There is a lot of sample code given so that will be what we will use. 
+The solution is this -
+
+var express = require('express');
+var app = express();
+var portNum = process.argv[2];
+
+app.get('/home', function(req, res) {
+      res.end('Hello World!');
+    });
+app.listen(portNum);
+
+As you can see ther was not much to add to the sample code other than changing root to home and like in other sets of
+challenges I assign the port number to its own variable which is not really necessary.
