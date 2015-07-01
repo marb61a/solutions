@@ -118,3 +118,20 @@ base64 -d data.txt
 
 Base64 encoding is used in many different places and in lots of different computer languages, there are also a 
 multitude of tutorials available which should be looked at.
+
+
+
+Level 12 - In this challenge we are tasked with decrypting a file. When we use ls we are given a file called
+data.txt. This file has been encrypted using a method called Rot13 it works by replacing a letter with the letter 
+13 letters after it in the alphabet. There is a far better explanation here - 
+
+https://en.wikipedia.org/wiki/ROT13
+
+There are a few different ways of handling this as there are rot13 encryption and decryption sites which can be 
+used as well as writing a script yourself. The solution can be found on alot of sites and is this
+
+cat data.txt | tr a-zA-Z n-za-mN-ZA-M
+
+Basically you are running cat on the file and then it is translated using regex to reverse.
+
+
