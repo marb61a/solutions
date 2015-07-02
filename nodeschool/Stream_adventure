@@ -183,3 +183,33 @@ module.exports = function(cmd, args){
 
 As is obvious there is not much that needs to be done but you can just setup the function and then export irt on a
 seperate line but this is cleaner.
+
+
+
+
+Level 12 Duplexer Redux - 
+This challange begins by telling you that you will be given a readable stream, `counter`, as the first argument to 
+an exported function where you will return a duplex stream with the `counter` as the readable side. You will be
+written objects with a 2-character `country` field as input, you are the asked to create an object to track the 
+number of occurrences of each unique country code, once the input ends, call `counter.setCounts()` with your counts 
+object. This is fairly similar to the previous challenge which is above and it is from there that the solution will
+be gotten. 
+
+var duplexer = require("duplexer");
+var through = require("through");
+
+module.exports = function(counter){
+    var counts = {};
+    var input = through(function write (buffer){
+        counts[buffer.country] =  counts[buffer.country] ?  counts[buffer.country] + 1 : 1;
+    }, function end (done){
+        counter.setCounts(counts);
+        done();
+    });
+    return duplexer(input, counter);
+};
+
+This is about the easiest solution, as you can see if you look up through previous solutions you will see that
+I have reused code from previous challenges, this along with the requirements and the demand made by the 
+challenges about using the setCounts() at the end meant that there was not much to do other than the iteration
+through the countries, this is a ternary solution but any loop should do the same thing.
