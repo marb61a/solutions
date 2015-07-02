@@ -5,3 +5,16 @@ This is a simple challenge to get started which is to  write a node program that
 the string "bytewiser" using console.log. The solution is fairly obvious 
 
 console.log(new Buffer("bytewiser"));
+
+
+Level 2 Hexadecimal Encoding -
+This challange according to the site itself asks that given an unknown number of bytes passed via process.argv, 
+create a buffer from them and output a hexadecimal encoded representation of the buffer. The answer should be a string
+of two-character pairs (also known as hexadecimal octets), where each pair represents a single number in the array of 
+bytes converted to hexadecimal. My solution is pretty much the same as the official one, it looks like this
+
+var bytes = process.argv.slice(2).map(parseFloat)
+console.log(new Buffer(bytes).toString('hex'))
+
+I did try using parseInt instead of parseFloat but it only worked for one test, also number can be used instead of
+paresFloat.
