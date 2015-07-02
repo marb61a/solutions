@@ -13,8 +13,9 @@ create a buffer from them and output a hexadecimal encoded representation of the
 of two-character pairs (also known as hexadecimal octets), where each pair represents a single number in the array of 
 bytes converted to hexadecimal. My solution is pretty much the same as the official one, it looks like this
 
-var bytes = process.argv.slice(2).map(parseFloat)
-console.log(new Buffer(bytes).toString('hex'))
+var port = process.argv;
+var bytes = port.slice(2).map(parseFloat);
+console.log(new Buffer(bytes).toString('hex'));
 
 I did try using parseInt instead of parseFloat but it only worked for one test, also number can be used instead of
 paresFloat.
