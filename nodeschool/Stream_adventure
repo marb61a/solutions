@@ -213,3 +213,15 @@ This is about the easiest solution, as you can see if you look up through previo
 I have reused code from previous challenges, this along with the requirements and the demand made by the 
 challenges about using the setCounts() at the end meant that there was not much to do other than the iteration
 through the countries, this is a ternary solution but any loop should do the same thing.
+
+
+
+Level 13 Combiner -
+In this challenge you are asked to write a module that returns a readable/writable stream using the 
+`stream-combiner` module. You are then given some code which to work with and then some guidelines that you need to
+follow. The stream will be written a newline-separated JSON list of science fiction genres and books. All the books 
+after a `"type":"genre"` row belong in that genre until the next `"type":"genre"` comes along in the output. Then
+the program should generate a newline-separated list of JSON lines of genres, each with a `"books"` array containing 
+all the books in that genre after that the list of files will need to be put into a gzip file. There are also hints
+given and using them along with the sample code and previous challenges code should set us well on the way. This
+is a lot more complex than I had initially thought so the solution is going to be a lot longer too.
