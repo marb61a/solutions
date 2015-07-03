@@ -9,3 +9,14 @@ This is the same as previous but the right click has been disabled. In most brow
 the view source page so another quick solution.
 
 Level 2 -
+This is similar to the previous challenges as we have to find a password. The hint given is that there is nothing on 
+this page. When you examine the page source code there is a directory called /files, the contents are two files in 
+the directory listing. One of these files was called users.txt and when looking at the contents of the file both the 
+username and password for natas3 are there.
+
+Level 3 -
+This is very similar to the previous challenge especially since the hint that is given is the exact same. When the 
+page source code is opened it reveals a lot as it tells you that not even Google will find the information, this means
+that there is a robot.txt file present which will prevent search engines from seeing certain directories. If we then
+navigate to the robots.txt file there is a directory called /s3cr3t/ which disallows google but allows us to navigate.
+Inside this directory is a file called users.txt and it contains the information we need.
