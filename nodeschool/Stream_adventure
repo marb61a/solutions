@@ -224,4 +224,49 @@ after a `"type":"genre"` row belong in that genre until the next `"type":"genre"
 the program should generate a newline-separated list of JSON lines of genres, each with a `"books"` array containing 
 all the books in that genre after that the list of files will need to be put into a gzip file. There are also hints
 given and using them along with the sample code and previous challenges code should set us well on the way. This
-is a lot more complex than I had initially thought so the solution is going to be a lot longer too.
+is a lot more complex than I had initially thought so the solution is going to be a lot longer too. I also had to 
+get help from a few different sources so my thanks to them as they helped me a lot, I tried several solutions some
+of which passed some but not all tests this is the solution which passed all
+
+var combine = require('stream-combiner');
+var through = require("through");
+var split = require("split");
+var zlib = require("zlib");
+
+module.exports = function(){
+    var results;
+    var lineString;
+    var bookGroup = through(function(line, end) {
+        if(line.length === 0){
+            return;
+        }else{
+                lineString = JSON.parse(line);
+                    if(lineString.type === 'genre'){
+                        if(results)
+                            this.push(JSON.stringify(results) + '\n');
+                            results = {'name' : lineString.name,
+                                       'books' : []
+                                      }; 
+                    } else if (lineString.type === 'book'){
+                        results.books.push(lineString.name);
+                        }
+             } 
+    }, function end (){
+               if(results){
+                     this.push(JSON.stringify(results) + '\n');
+                }
+                this.push(null);
+            }
+    );
+    
+    return combine(
+        split(),
+        bookGroup,
+        zlib.createGzip()  
+        );
+};
+
+I got most of the solution down quickly as it was fairly self explanatory but due to some errant brackets I had to
+get help with the lineString.json problem so again my thanks to those who helped me. Also it is well worth taking
+a look at both the official solution and other peoples solutions for a different view, I did both and some did 
+tech me a lot.
