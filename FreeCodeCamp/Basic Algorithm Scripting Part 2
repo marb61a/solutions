@@ -3,8 +3,8 @@ the site.
 
 
 
-Roman Numeral Converter - I had to look this up online and although there are variations on a theme most revolve
-around the same solution
+Roman Numeral Converter - I had to look up how to set up the numerals\numbers needed  online and although there are 
+variations on a theme most revolve around the same solution
 
 function convert(num) {
  var conversionSet = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
@@ -35,3 +35,26 @@ list of values. The second loop will run the number through conversion, it will 
 As I said previously there are many solutions available and the freecodecamp site suggests using various array
 methods but of all the possible solutions I read and tried this one made the most sense to me and full credit goes
 to the guys whose solutions helped me with this.
+
+
+
+
+Falsey Bouncer -
+The object of this challenge is to remover all the falsey values from an array. There are several methods that are
+available but this one is the simplest -
+
+function bouncer(arr) {
+  var secondArray = [];
+  for(var i = 0; i < arr.length; i++){
+    if(arr[i]){
+      secondArray.push(arr[i]);
+    }
+  }
+  return secondArray;
+}
+
+bouncer([7, 'ate', '', false, 9]);
+
+As you can see the soulution is to simply use an empty second array and populate it with values from the first after
+cycling through it. There are solutions available which include array.filter and also array.splice which will
+apparently perform faster but this is sufficient for the purposes which we need it for.
