@@ -270,3 +270,18 @@ I got most of the solution down quickly as it was fairly self explanatory but du
 get help with the lineString.json problem so again my thanks to those who helped me. Also it is well worth taking
 a look at both the official solution and other peoples solutions for a different view, I did both and some did 
 tech me a lot.
+
+
+
+Level 14 Crypt - In this the penultimate challenge we are asked to write a module which will be given a passphrase 
+on `process.argv[2]` and 'aes256' encrypted data will be written to stdin. The we have to simply decrypt the data 
+and stream the result to process.stdout. We are also told that we can use the `crypto.createDecipher()` api from 
+node core to solve this and are given very detailed hints to solve the challenge. The solution is fairly quick
+after reading the sample code
+
+var crypto = require('crypto');
+var portNum = process.argv[2];
+var stream = crypto.createDecipher('aes256', portNum);
+process.stdin.pipe(stream).pipe(process.stdout);
+
+The official solution is much the same.
