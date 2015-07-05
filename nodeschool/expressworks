@@ -16,5 +16,22 @@ app.get('/home', function(req, res) {
     });
 app.listen(portNum);
 
-As you can see ther was not much to add to the sample code other than changing root to home and like in other sets of
+As you can see there was not much to add to the sample code other than changing root to home and like in other sets of
 challenges I assign the port number to its own variable which is not really necessary.
+
+
+Level 2  Static -
+In this challenge we are asked to apply static middleware to serve an index.html file without any routes. The
+solution must listen on the port number supplied by process.argv[2]. The index.html file is provided and usable via 
+the path supplied by process.argv[3]. There are hints on how to do this and the solution should be straightforward
+enough -
+
+var express = require('express');
+var portNum = process.argv[2];
+var filePath = process.argv[3];
+var app = express();
+
+app.use(express.static(filePath || filePath.join(__dirname, 'public')));
+app.listen(portNum);
+
+This is my solution but there are others.
