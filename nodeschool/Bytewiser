@@ -7,8 +7,10 @@ the string "bytewiser" using console.log. The solution is fairly obvious
 console.log(new Buffer("bytewiser"));
 
 
+
+
 Level 2 Hexadecimal Encoding -
-This challange according to the site itself asks that given an unknown number of bytes passed via process.argv, 
+This challenge according to the site itself asks that given an unknown number of bytes passed via process.argv, 
 create a buffer from them and output a hexadecimal encoded representation of the buffer. The answer should be a string
 of two-character pairs (also known as hexadecimal octets), where each pair represents a single number in the array of 
 bytes converted to hexadecimal. My solution is pretty much the same as the official one, it looks like this
@@ -18,4 +20,35 @@ var bytes = port.slice(2).map(parseFloat);
 console.log(new Buffer(bytes).toString('hex'));
 
 I did try using parseInt instead of parseFloat but it only worked for one test, also number can be used instead of
-paresFloat.
+parseFloat.
+
+
+
+
+Level 3 Modifiying Buffers -
+In this challenge we are asked to write a program that takes the first buffer written to process.stdin, updates all 
+instances of . with ! and then logs out the updated buffer object. The site also says that there are bonus points if
+you never call .toString() on your buffer!. The solution then would be this 
+
+process.stdin.on('data', function(buffer){
+    for (var i = 0; i < buffer.length; i++ ) {
+        if(buffer[i] === 46){
+            buffer.write('!', i);
+        }
+    }
+    console.log(buffer);
+    
+});
+
+The official solution is well worth a look as it does things slightly differently like so 
+
+var DOT = '.'.charCodeAt(0), BANG = '!'.charCodeAt(0)
+    
+    process.stdin.on('data', function(buff) {
+      for (var i = 0; i < buff.length; i++) {
+        if (buff[i] === DOT) buff[i] = BANG
+      }
+      console.log(buff);
+    });
+    
+Either method works but I do like the fact that the characters are assigned to variables.    
