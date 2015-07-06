@@ -46,7 +46,7 @@ Level 05 Lines -
 In the fifth challenge we are asked to write a solution to a challenge which is identical to the previous one but
 with one important twist which is to convert even-numbered lines to upper-case and odd-numbered lines to lower-case.
 We may also consider the first line to be odd-numbered. We also have to install split through2 to the directory. As
-this is similar to the previous challeng we should be able to use a lot of the code and the documentation gives a
+this is similar to the previous challenge we should be able to use a lot of the code and the documentation gives a
 good hint as to where to proceed from, my solution is this
 
 var through = require("through");
@@ -285,3 +285,43 @@ var stream = crypto.createDecipher('aes256', portNum);
 process.stdin.pipe(stream).pipe(process.stdout);
 
 The official solution is much the same.
+
+
+
+Level 15 Secretz -
+This is the final stream-adventure challenge and for the challenge you are told that you have an encrypted, gzipped 
+tar file will be piped in on process.stdin. To beat the challenge, for each file in the tar input, print a 
+hex-encoded md5 hash of the file contents followed by a single space followed by the filename, then a
+newline. You will receive the cipher name as process.argv[2] and the cipher passphrase as process.argv[3]. You can 
+pass these arguments directly through to `crypto.createDecipher()`. There is a lot of sample code and combining it
+with the previous challenge and needed requirements should take us close to a solution. This is mine
+
+var crypto = require("crypto");
+var cipherName = process.argv[2];
+var passPhrase = process.argv[3];
+var createdDecipher = crypto.createDecipher(cipherName, passPhrase);
+var zlib = require("zlib");
+var gunzip = zlib.Gunzip();
+var tar = require('tar');
+var parser = tar.Parse();
+var through = require("through");
+
+
+parser.on('entry', function(entry){
+    if(entry.type !== 'File'){
+        return;
+    } else{
+        var inputName = entry.path;
+        var inputHasher = crypto.createHash('md5');
+        entry.pipe(inputHasher).pipe(through(function write(buffer){
+            var hash = buffer.toString('hex');
+            process.stdout.write(hash + ' ' + inputName + '\n');
+        }));
+    }
+    
+});
+
+process.stdin.pipe(createdDecipher).pipe(gunzip).pipe(parser);
+
+There are others like the official solution and other users which are similar but a lot do not seem to assign most
+items to variables which again is not necessary but I find it to be useful.
