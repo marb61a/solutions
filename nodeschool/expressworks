@@ -20,6 +20,7 @@ As you can see there was not much to add to the sample code other than changing 
 challenges I assign the port number to its own variable which is not really necessary.
 
 
+
 Level 2  Static -
 In this challenge we are asked to apply static middleware to serve an index.html file without any routes. The
 solution must listen on the port number supplied by process.argv[2]. The index.html file is provided and usable via 
@@ -35,3 +36,25 @@ app.use(express.static(filePath || filePath.join(__dirname, 'public')));
 app.listen(portNum);
 
 This is my solution but there are others.
+
+
+
+Level 3 Jade -
+In this the third challenge we are asked to create an Express.js app with a home page rendered by Jade template 
+engine. The homepage should respond to /home and the view should show the current date using toDateString. There is
+a lot of sample code given and this should make the challenge easier to complete. The solution is
+
+var express = require('express');
+var portNum = process.argv[2];
+var filePath = process.argv[3];
+var app = express();
+app.set('view engine', 'jade');
+app.set('views', filePath || filePath.join(__dirname, 'public'));
+
+app.get('/home', function(req, res) {
+    res.render('index', {date: new Date().toDateString()});
+});
+
+app.listen(portNum);
+
+As you cann see there is a lot of previously used code along with the documentation hints.
