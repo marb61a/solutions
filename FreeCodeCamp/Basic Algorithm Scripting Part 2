@@ -78,3 +78,24 @@ truncate('A-tisket a-tasket A green and yellow basket', 11);
 
 The solution does not need any explaining although I did try using a new string variable but it was better to just
 use the existing string and change the value it points to.
+
+
+
+
+Chunky Monkey - 
+The goal in this challenge is to write a function that splits an array (first argument) into groups the length of 
+size (second argument) and returns them as a multidimensional array. this one should be fairly easy 
+
+function chunk(arr, size){
+  var secondArray = [];
+  
+  for(var i = 0; i < arr.length; i += size){
+    secondArray.push(arr.slice(i, i + size));
+  }
+  
+  return secondArray;
+}
+
+chunk(['a', 'b', 'c', 'd'], 2);
+
+This worked although the site crashed twice so I spent a while to make sure it was not this code.
