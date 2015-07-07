@@ -52,3 +52,48 @@ var DOT = '.'.charCodeAt(0), BANG = '!'.charCodeAt(0)
     });
     
 Either method works but I do like the fact that the characters are assigned to variables.    
+
+
+
+Level 4 Line Splitter -
+In this challenge you are told that the argument given to you from process.argv[2] will be a path to a file. You 
+will need to read this file and split it by newline characters ('\n'). and that you should log one Buffer per line.
+Also the site states that there will be bonus points if you never use .toString(). This is very similar to other
+challenges from different sections. You are also told that there are Extra bonus points if you avoid using 
+fs.readFileSync. With the various hints and previous code the solution should look like 
+
+var fs = require("fs");
+var filePath = process.argv[2];
+
+fs.readFile(filePath, function(err, data){
+    var current = 0;
+    if(err){
+        throw err;
+    }else{
+        for(var i = 0; i < data.length; i++){
+            if(data[i] === 10){
+                 console.log(data.slice(current, i)); 
+                 current = i + 1;
+            }
+        }
+    }
+    console.log(data.slice(current, i));
+});
+
+This is a solution from another challenge in a different exercise I have done with a couple of changes made to fit 
+this particlar challenge, the official solution is different but also well worth a look
+
+var fs = require('fs')
+var file = fs.readFileSync(process.argv[2])
+var offset = 0, NL = '\n'.charCodeAt(0)
+    
+    for (var i = 0; i < file.length; i++) {
+      if (file[i] === NL) {
+        console.log(file.slice(offset, i))
+        i++
+        offset = i
+      }
+    }
+    console.log(file.slice(offset, i)
+    
+As you can see the official solution uses readFileSync and is probably a cleaner solution.    
