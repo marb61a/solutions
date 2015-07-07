@@ -58,3 +58,23 @@ bouncer([7, 'ate', '', false, 9]);
 As you can see the soulution is to simply use an empty second array and populate it with values from the first after
 cycling through it. There are solutions available which include array.filter and also array.splice which will
 apparently perform faster but this is sufficient for the purposes which we need it for.
+
+
+
+Truncate a String -
+The challenge here is to test to see if the length of a string is greater than a num which is passed in as the
+second parameter. If it is longer then it must be truncated and have 3 dots at the end, the three dots at the end 
+add to the string length. the solution is fairly obvious -
+
+function truncate(str, num) {
+  if(str.length > num ){
+    str = str.slice(0, num - 3) + "...";
+  }
+  
+  return str;
+}
+
+truncate('A-tisket a-tasket A green and yellow basket', 11);
+
+The solution does not need any explaining although I did try using a new string variable but it was better to just
+use the existing string and change the value it points to.
