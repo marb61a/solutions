@@ -1,4 +1,17 @@
 This is the Nodeschool Promise It Won't Hurt set of challenges and the solutions. It is designed to help you use
 promises to handle async operations.
 
-Level 01
+Level 01  Fullfill a Promise -
+This is the first challenge in this series and in it you are asked to use the "Q" library to create a promise. After  
+that you will need to pass console.log to the "then" method of your promise. Then manually resolve that promise using 
+setTimeout with a delay of 300ms and pass it a parameter of "RESOLVED!". There is boiler plate code included and as is
+standard the challenge should be fairly basic. The solution is 
+
+var q = require('q');
+var defer = q.defer();
+
+defer.promise.then(console.log);
+setTimeout(defer.resolve, 300, "RESOLVED!");
+
+Make sure that everything is in the correct order and you have included the exclamation mark as that will cause a 
+failure.
