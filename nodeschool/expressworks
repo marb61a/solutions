@@ -57,4 +57,28 @@ app.get('/home', function(req, res) {
 
 app.listen(portNum);
 
-As you cann see there is a lot of previously used code along with the documentation hints.
+As you can see there is a lot of previously used code along with the documentation hints.
+
+
+
+
+Level 4 Good Old Form -
+The goal of this challenge is to write a route ('/form') that processes HTML form input 
+(<form><input name="str"/></form>) and prints backwards the str value. There are a lot of hints on how to do this
+in the documentation as well as an explanation about using POST instead of GET. The solution is this 
+
+var express = require('express');
+var portNum = process.argv[2];
+var bodyparser = require('body-parser');
+var app = express();
+
+app.use(bodyparser.urlencoded());
+
+app.post('/form', function(req, res){
+     res.send(req.body.str.split('').reverse().join(''));
+});
+
+app.listen(portNum);
+
+It is fairly similar to previous code with the exception of the bodyparser module.
+
