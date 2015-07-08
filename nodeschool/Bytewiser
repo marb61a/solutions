@@ -97,3 +97,40 @@ var offset = 0, NL = '\n'.charCodeAt(0)
     console.log(file.slice(offset, i)
     
 As you can see the official solution uses readFileSync and is probably a cleaner solution.    
+
+
+
+Level 5 Buffer Concat -
+In this challenge we are asked to write a program that combines all of the buffers from process.stdin and then 
+writes the single big buffer out to the console and there are bonus points if using a stream. This is again similar
+to challenge from another set so that will be of use here along with the hints. The streams are very interesting
+as using the on('data') sets the stream to a sort of flow which 'end' stops. There are more intelligent ways of
+handling streams but this way is sufficient  
+
+var bufferData = [];
+
+process.stdin.on('data', function(buffer){
+    bufferData.push(buffer);
+});
+
+process.stdin.on('end', function() {
+    var outputData = Buffer.concat(bufferData);
+    console.log(outputData);
+});
+
+As you can see everything is fairly self explanatory but again the official solution can be learned from
+
+  var buffers = [];
+    
+    process.stdin.on('readable', function() {
+      var chunk = process.stdin.read();
+      if (chunk !== null) {
+        buffers.push(chunk);
+      }
+    });
+    
+    process.stdin.on('end', function() {
+      console.log(Buffer.concat(buffers));
+    });
+
+As you can see they use read on the process.stdin which is probably has better control of the stream.    
