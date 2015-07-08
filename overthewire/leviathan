@@ -68,3 +68,17 @@ is a syntax hack needed to make the solution work. Also as I said maybe a way of
 http://perso.heavyberry.com/writeups/leviathan.html.
 
 
+Level 3-4
+In this challenge we are asked to find the password in a pretty similar vein to other challenges. First step is to
+search the directory and then run the challenge if no other files are present
+ls - to see what is in the directory
+./level3 - Runs the challenge.
+Enter a password and if it is wrong the you will be told. At this point there are a few tools available for checking
+the file such as ltrace or strings which we have mentioned above. For this example use strings
+strings ./level3
+Again we see what appears to be the snprintf function but this is a misdirect as it is snlprintf which is probably
+made up and right after this is the "You've got shell" message. This means that snlprintf is probably the pass and
+sure enough when entered gives the success message. After that it is a matter of running cat on the leviathan4
+file like so
+cat /etc/leviathan_pass/leviathan4
+as the challenge dumps you into the leviathan4 shell. 
