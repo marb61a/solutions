@@ -4,9 +4,13 @@ Level 0 -
 You are given the username and password for this level however you need to find the password which is on the page. The
 solution is quite straight forward. Right click and select view source and you will see the password.
 
+
+
 Level 1 - 
 This is the same as previous but the right click has been disabled. In most browsers ctrl+u will bring up
 the view source page so another quick solution.
+
+
 
 Level 2 -
 This is similar to the previous challenges as we have to find a password. The hint given is that there is nothing on 
@@ -14,9 +18,30 @@ this page. When you examine the page source code there is a directory called /fi
 the directory listing. One of these files was called users.txt and when looking at the contents of the file both the 
 username and password for natas3 are there.
 
+
+
 Level 3 -
 This is very similar to the previous challenge especially since the hint that is given is the exact same. When the 
 page source code is opened it reveals a lot as it tells you that not even Google will find the information, this means
 that there is a robot.txt file present which will prevent search engines from seeing certain directories. If we then
 navigate to the robots.txt file there is a directory called /s3cr3t/ which disallows google but allows us to navigate.
 Inside this directory is a file called users.txt and it contains the information we need.
+
+
+
+Level 4 -
+In this the fourth challenge we are asked to login as natas5. You will get an error message if you try to log in as
+anyone else. This means that the internals of Http are going to have to be looked at and more specifically the
+header of the Http. There is more information available at this address
+
+https://en.wikipedia.org/wiki/HTTP_referer
+
+Basically what needs to be done is that a field in the Http header needs to be altered in order to change or at 
+least make the challenge think that it is the proper user. There are a couple of tools available such as 
+
+tamper data - http://netsecurity.about.com/od/hackertools/a/What-Hackers-Do-Not-Want-You-To-Know-About-The-Tamper-
+              Data-Firefox-Add-on.htm
+              
+there are of course others available both plugins and standalone tools. With that the challenge then is nearly
+complete as all that has to be done then is to edit the header field called referer to reflect the challenge needs
+so instead of natas4.natas.labs.overthewire.org’ it will say natas5.natas.labs.overthewire.org’.
