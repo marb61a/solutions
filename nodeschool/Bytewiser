@@ -134,3 +134,28 @@ As you can see everything is fairly self explanatory but again the official solu
     });
 
 As you can see they use read on the process.stdin which is probably has better control of the stream.    
+
+
+
+Level 6 Typed Arrays -
+This is the penultimate challenge in bytewiser and we are asked to read the first buffer from process.stdin, 
+copy all bytes into a Uint8Array and then log out a JSON stringified representation of the typed array. The 
+Uint8Array is an unsigned int array and operates similar to buffer. The solution seems fairly easy as it will use a
+lot of the code written in the previous example with a few modifications like this 
+
+process.stdin.on('data', function(buffer){
+    var typeArr = new Uint8Array(buffer.length);
+    
+    for(var i = 0; i < buffer.length; i++){
+        typeArr[i] = buffer[i];
+    }
+    
+    console.log(JSON.stringify(typeArr));
+});
+
+Also the official solution is very clean and I like this more than mine
+
+process.stdin.once('data', function(buff) {
+      var ui8 = new Uint8Array(buff)
+      console.log(JSON.stringify(ui8))
+    })
