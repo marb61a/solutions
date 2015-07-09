@@ -16,8 +16,8 @@ app.get('/home', function(req, res) {
     });
 app.listen(portNum);
 
-As you can see there was not much to add to the sample code other than changing root to home and like in other sets of
-challenges I assign the port number to its own variable which is not really necessary.
+As you can see there was not much to add to the sample code other than changing root to home and like in other sets 
+of challenges I assign the port number to its own variable which is not really necessary.
 
 
 
@@ -82,3 +82,30 @@ app.listen(portNum);
 
 It is fairly similar to previous code with the exception of the bodyparser module.
 
+
+
+Level 5 Stylish CSS -
+In this challenge we are asked to Style the html from the example "STATIC" using Stylus middleware. Also at the end
+of the hints is the note that in addition to producing in the "STATIC" exercise, you'll need to serve static files.
+Also you are cautioned to remember that middleware is executed in the order app.use is called. There are a lot of
+hints and ideas and recommendations and all of these in addition to previous code should make the challenge a tiny
+bit easier. The solution is identical to the static challenge which maybe a bug
+
+var express = require("express");
+var portNum = process.argv[2];
+var filePath = process.argv[3];
+var app = express();
+
+app.use(express.static(filePath || filePath.join(__dirname, 'public')));
+
+app.listen(portNum);
+
+The official solution is 
+
+var express = require('express')
+var app = express()
+    
+app.use(require('stylus').middleware(process.argv[3]));
+app.use(express.static(process.argv[3]));
+    
+app.listen(process.argv[2])
