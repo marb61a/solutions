@@ -109,3 +109,28 @@ app.use(require('stylus').middleware(process.argv[3]));
 app.use(express.static(process.argv[3]));
     
 app.listen(process.argv[2])
+
+
+
+
+Level 6 Param Pam Pam -
+In this challenge we are asked to create an Express.js server that processes PUT '/message/:id' requests and 
+produces an SHA1 hash of the current date with the id. There are plenty of hints given and the code from previous
+challenges will probably be able to be reused. With that in mind the solution should look like 
+
+var express = require("express");
+var path = require("path");
+var portNum = process.argv[2];
+var crypto = require("crypto");
+var app = express();
+
+app.put('/message/:id', function(req, res){
+    var id = req.params.id;
+    var hashedDate = crypto.createHash('sha1').update(new Date().toDateString() + id).digest('hex');
+    res.send(hashedDate);
+});
+
+app.listen(portNum);
+
+As you can see there is little that needed to be done as the hints and previous code all but completed the whole
+challenge without needing to anything but read the documentation which in itself is an important point.
