@@ -1,4 +1,28 @@
 These are my solutions to the Nodeschool Make Me Hapi series of challenges. Hapi is a framework for Node and it is
 like Express in that both are Http frameworks.
 
-Level 1 -
+Level 1 - Hello Hapi
+This is the first challeng in the makemehapi set and according to the sitewe must create a hapi server that listens 
+on a port passed from the command line and replies with "Hello Hapi" when an HTTP GET request is sent to /. There is 
+a large amount of hints and boilerplate code so the solution should be relatively straight forward
+
+var Hapi = require('hapi');
+var server = new Hapi.Server();
+var portNum = process.argv[2];
+
+server.connection({host: 'localhost', port: Number(portNum || 8080)});
+
+server.route({
+                path : '/', 
+                method:'GET',
+                handler: function(req, reply)
+                        {
+                            reply('Hello Hapi');
+                            
+                        }});
+                        
+server.start();
+
+There were some issues with my cloud ide as I had not installed hapi so that is important as is the need to make 
+sure that the localhost address is correct as it may need to be changed depending on the ide. 
+
