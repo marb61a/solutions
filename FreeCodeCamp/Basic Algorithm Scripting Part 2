@@ -99,3 +99,25 @@ function chunk(arr, size){
 chunk(['a', 'b', 'c', 'd'], 2);
 
 This worked although the site crashed twice so I spent a while to make sure it was not this code.
+
+
+Mutations - 
+The goal of this challenge is to in the words of the site itself return true if the string in the first element of 
+the array contains all of the letters of the string in the second element of the array.
+
+function mutation(array) {
+  var firstElement = array[0].toLowerCase();
+  var secondElement = array[1].toLowerCase().split("");
+  
+  for(var i = 0; i < array[1].length; i++){
+    if(firstElement.indexOf(secondElement[i]) === -1 ){
+      return false;
+    }          
+  }  
+  return true;
+}
+
+mutation(['hello', 'hey']);
+
+I had huge problems with this and it was down to the fact that I had one failure due to the position of the true
+return as I had it inside the for loop.
