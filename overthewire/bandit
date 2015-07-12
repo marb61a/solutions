@@ -143,7 +143,7 @@ Basically you are running cat on the file and then it is translated using regex 
 
 
 
-Level 13 - 
+Level 132 - 13
 The challenge here is to get the password for the next level which is stored in the file data.txt, which is a 
 hexdump of a file that has been repeatedly compressed. This means that the challenge itself is not difficult but
 is tedious as repeated decompressing is needed. I wonder if it was possible using something like zcat to drill
@@ -151,7 +151,36 @@ through several layers of compression at once.
 
 
 
-Level 14 -
+Level 13 - 14
 Again a fairly easy challenge to tackle, the password for the next level is stored in /etc/bandit_pass/bandit14 and 
 can only be read by user bandit14. For this level, you don’t get the next password but but you get a private SSH 
 key that can be used to log into the next level. Use ssh -i sshkey.private bandit14@localhost to connect.
+
+
+
+Level 14 - 15
+This challenge is to connect to a certain port in this case 30000 on localhost. This one is easy and ther are a few
+different tools that will do the same job, to name 2 : netcat and telnet. The solutions for both are
+
+Telnet - telnet localhost 30000
+Netcat - nc -vvn 127.0.0.1 30000
+
+There is a very good tutorial on netcat syntax that is available at
+
+https://www.digitalocean.com/community/tutorials/how-to-use-netcat-to-establish-and-test-tcp-and-udp-connections-
+on-a-vps.
+
+Also netcat is not regularly maintained and telnet is not advised in most practical circumstances.
+
+
+Level 15 - 16
+This is identical to the previous challenge but in this case there will be a need to use openssl. There is a very
+useful guide and tutorial into openssl that is available at this url
+
+https://www.madboa.com/geek/openssl/
+
+The solution to the cahllenge is either
+openssl s_client -connect 127.0.0.1:30001 or
+openssl s_client -connect localhost:30001
+
+Either one works.
