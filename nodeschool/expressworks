@@ -134,3 +134,24 @@ app.listen(portNum);
 
 As you can see there is little that needed to be done as the hints and previous code all but completed the whole
 challenge without needing to anything but read the documentation which in itself is an important point.
+
+
+
+
+Level 7 What's In Query -
+This is the penultimate challenge in expressworks and in it we are asked to write a route that extracts data from 
+query string in the GET '/search' URL route, e.g. ?results=recent&include_tabs=true and then outputs it back to
+the user in JSON format. There are only a couple of hints which we already know and there will be a lot of the
+code above reused as has been standard practice. With all of that in mind the solution should be 
+
+var express = require("express");
+var portNum = process.argv[2];
+var app = express();
+
+app.get('/search', function(req, res){
+    res.send(JSON.stringify(req.query));
+});
+
+app.listen(portNum);
+
+There are some similar solutions but they would not pass (maybe a bug) so this is the cleanest one for me.
