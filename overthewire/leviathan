@@ -82,3 +82,14 @@ sure enough when entered gives the success message. After that it is a matter of
 file like so
 cat /etc/leviathan_pass/leviathan4
 as the challenge dumps you into the leviathan4 shell. 
+
+
+
+Level 4-5 -
+This is a relatively basic challenge to solve, there is not much to see upon first look but when the 
+ls -la 
+command is run there is a trash directory
+cd into the directory and again using
+ls -la shows a bin file which when run gives ascii encoded output.
+The solution is to either put it through an online ascii converter or maybe write one, either way this will give the
+password.
