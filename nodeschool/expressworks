@@ -155,3 +155,30 @@ app.get('/search', function(req, res){
 app.listen(portNum);
 
 There are some similar solutions but they would not pass (maybe a bug) so this is the cleanest one for me.
+
+
+
+Level 8 - JSON Me
+This is the final expressworks challenge and in it you are asked to write a server that, when it recieves a GET, 
+reads a file, parses it to JSON and responds with that content to the user. The server should respond to any GET 
+that matches the '/books' resource path. As always, the port is passed in process.argv[2]. The file to read is 
+passed in process.argv[3]. Again there are hints and along with them and the requirements and previous code it
+should get the challenge done without too much trouble.
+
+var express = require("express");
+var portNum = process.argv[2];
+var filePath = process.argv[3];
+var fs = require("fs");
+var app = express();
+
+app.get('/books', function(req, res){
+    fs.readFile(filePath, function(err, data){
+            res.json(JSON.parse(data));
+            res.end();
+    });
+});
+
+app.listen(portNum);
+
+Due to issues with my ide I could not test this properly but other veriified solutions would not work either so
+it is a bug somewhere.
