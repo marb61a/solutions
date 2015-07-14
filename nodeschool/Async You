@@ -1,3 +1,45 @@
 These are the solutions to the Nodeschool Async You set of challenges
 
-Level 1 
+Level 1 Waterfall -
+This is the first challenge and according to the documentation there is a need to write a program that first reads the
+contents of a file.The path will be provided as the first command-line argument to your program and the file will 
+contain a single URL. Using http.get, create a GET request to this URL and console.log the response body. This is a 
+relatively basic challenge to start as there is a lot of code given so here is the solution 
+
+var http = require('http')
+var async = require("async");
+var fs = require("fs");
+var filepath = process.argv[2];
+
+async.waterfall([
+    function(cb){
+        fs.readFile(filepath, function(err, data){
+            if(err){
+                return cb(err);
+            }else{
+                cb(null, data.toString());
+            }
+        });
+    },
+    function(urlData, cb){
+        var body = '';
+        http.get(urlData, function(res){
+                res.on('data', function(chunk){
+                body += chunk.toString();
+            });
+                res.on('end', function(){
+                cb(null, body);
+            });
+        }).on('error', function(err) {
+          cb(err);
+        });
+        }
+    ], 
+    function(err, result){
+      if (err) return console.error(err);
+      console.log(result);
+    }
+    );
+
+This has a lot of the boilerplate code that was given used with a little amount of changes as that was all the 
+challenge needed.
