@@ -45,3 +45,11 @@ tamper data - http://netsecurity.about.com/od/hackertools/a/What-Hackers-Do-Not-
 there are of course others available both plugins and standalone tools. With that the challenge then is nearly
 complete as all that has to be done then is to edit the header field called referer to reflect the challenge needs
 so instead of natas4.natas.labs.overthewire.org’ it will say natas5.natas.labs.overthewire.org’.
+
+
+Level 5 -
+In this challenge we are asked to again login, when you do you get the Access disallowed. You are not logged in
+message. A look through the source code reveals little but as usual persistence means that there are cookies so 
+they will need to be examined using a tool like the web developer plugin for firefox. When the cookie is examined
+there is a called loggedin with a value of 0 for its contents, this will have to be edited to 1 in order for the
+challenge to be won.
