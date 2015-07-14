@@ -26,3 +26,27 @@ server.start();
 There were some issues with my cloud ide as I had not installed hapi so that is important as is the need to make 
 sure that the localhost address is correct as it may need to be changed depending on the ide. 
 
+
+
+Level 2 ROUTES -
+In this challenge the task is to create a hapi server that listens on a port passed from the command line and 
+outputs "Hello [name]" where [name] is replaced with the path parameter supplied to GET /{name}. The previous code
+along with the hints should give a good guide towards a solution. 
+
+var Hapi = require('hapi');
+var server = new Hapi.Server();
+var portNum = process.argv[2];
+
+server.connection({host: 'localhost', port: Number(portNum || 8080)});
+
+server.route({
+                method : 'GET',
+                path : '/{name}',
+                handler : function(req, reply){
+                    reply('Hello ' + req.params.name);
+                }
+            });
+
+server.start();
+
+As can be seen there was not much to do using the previous code other than to change the handler method values.
