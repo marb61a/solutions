@@ -74,3 +74,32 @@ setTimeout(defer.reject, 300, "I DID NOT FIRE");
 
 You do not need to put timeout values but reusing previous code from previous example had this timeout so I thought
 that it was a good idea to keep in.
+
+
+Level 4 - Always Async
+In this challenge the description of the task is long so I will just copy it to here
+In this lesson, we are going to prove to ourselves that this is the case by 
+writing a script that does the following:
+
+1. Create a promise using the "Q" library
+2. Pass console.log to the "then" method of our promise
+*3. Resolve the promise with a parameter "SECOND"
+4. Print "FIRST" to the console using console.log
+
+*Do this synchronsouly and NOT in a setTimeout as was the case in previous lessons
+
+Your script will pass and show you that despite the promise being resolved synchronously,
+the provided function is not executed until the next turn of the event loop.
+
+Thus, you should see "FIRST", "SECOND"
+
+As you can see it is fairly similar to what has been done previously so by using the hints and reusing previous
+challenges is where to start finding a solution which is fairly straightforward
+
+var q = require('q');
+var defer = q.defer();
+defer.promise.then(console.log);
+defer.resolve("SECOND");
+console.log("FIRST");
+
+As you can see the description is longer than the challenge.
