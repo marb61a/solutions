@@ -85,7 +85,7 @@ as the challenge dumps you into the leviathan4 shell.
 
 
 
-Level 4-5 -
+Level 4-5 
 This is a relatively basic challenge to solve, there is not much to see upon first look but when the 
 ls -la 
 command is run there is a trash directory
@@ -93,3 +93,30 @@ cd into the directory and again using
 ls -la shows a bin file which when run gives ascii encoded output.
 The solution is to either put it through an online ascii converter or maybe write one, either way this will give the
 password.
+
+
+
+Level 5-6 
+In this challenge the task is to find a file as when you run the leviathan05 file it compains about not being able
+to find a file. The solution to this is fairly simple particularly in light of some of the other solution folders
+as they have similar challenges. The solution in this case invloves symlinks 
+
+ln -s /etc/leviathan_pass/leviathan6 /tmp/file.log
+
+This creates a symlink to the missing file and allows for the challenge to be passed.
+
+
+
+Level 6-7
+This is the final challenge in Leviathan and involves a file that takes a 4 digit passcode, this means that either
+use a script to automate a brute force crack or try each combination by hand. There are a few different ways of 
+doing the automation such as a bash script like this
+
+ 
+for i in {0000..9999}
+do
+~/leviathan6 $i
+done
+
+This will run through the combinations until the correct one is found, after that the challenges are done but if 
+you wish to log on to level7 you will get a congratulations message.
