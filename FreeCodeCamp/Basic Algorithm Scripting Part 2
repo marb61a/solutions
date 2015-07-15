@@ -121,3 +121,27 @@ mutation(['hello', 'hey']);
 
 I had huge problems with this and it was down to the fact that I had one failure due to the position of the true
 return as I had it inside the for loop.
+
+
+
+Where Art Thou -
+The task here is to make a function that looks through a list (first argument) and returns an array of all objects 
+that have equivalent property values (second argument) 
+
+function where(collection, source) {
+  var arr = [];
+  // What's in a name?
+  for(var i in collection){
+    if(collection[i].last === source.last ){
+      arr.push(collection[i]);
+    }
+  }
+  return arr;
+}
+
+where([{ first: 'Romeo', last: 'Montague' }, { first: 'Mercutio', last: null }, 
+{ first: 'Tybalt', last: 'Capulet' }], { last: 'Capulet' });
+
+
+This was relatively quick, there are other solutions that make use of the api recommended by the site but this is 
+simpler as it is just 2 loops and using the array.last method.
