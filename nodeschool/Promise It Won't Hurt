@@ -86,7 +86,7 @@ writing a script that does the following:
 *3. Resolve the promise with a parameter "SECOND"
 4. Print "FIRST" to the console using console.log
 
-*Do this synchronsouly and NOT in a setTimeout as was the case in previous lessons
+*Do this synchronously and NOT in a setTimeout as was the case in previous lessons
 
 Your script will pass and show you that despite the promise being resolved synchronously,
 the provided function is not executed until the next turn of the event loop.
@@ -103,3 +103,36 @@ defer.resolve("SECOND");
 console.log("FIRST");
 
 As you can see the description is longer than the challenge.
+
+
+
+Level 5 Values And Promises -
+This is the fifth challenge and again it is better to let the site do the talking about the task
+Construct a promise chain that returns VALUES to prove to yourself
+that promise handlers will wrap your returned values in promises 
+allowing additional chaining.
+
+1. Construct a promise using Q's defer
+2. Construct a function "attachTitle" which prepends "DR. " to 
+   its first argument and returns the result.
+3. Build a promise chain off the promise we constructed initially
+   that first calls "attachTitle" then calls console.log.
+4. Resolve the promise you created with a value of "MANHATTAN".
+
+As you can see the documentation is failr detailed and there is a number of hints which along with using code from
+previous example should allow the challenge to be solved quickly enough. The solution should look like
+
+var q = require('q');
+var defer = q.defer();
+
+function attachTitle(name){
+    return 'DR. ' + name; 
+}
+
+defer.promise
+.then(attachTitle)
+.then(console.log);
+
+defer.resolve("MANHATTAN");
+
+The was not many ways to do this so even the official solution is the same.
