@@ -43,3 +43,92 @@ async.waterfall([
 
 This has a lot of the boilerplate code that was given used with a little amount of changes as that was all the 
 challenge needed.
+
+
+
+Level 2 Series Object - 
+In this challenge the site says that it is going to be async.series that will be the basis of the challenge and it
+discusses the difference between this and the waterfall method used in the previous challenge. In the words of the
+site itself regarding the task
+Write a program that will receive two URLs as the first and second command-line arguments.
+Using http.get, create a GET request to these URLs and pass the response body
+to the callback.
+Pass in an object of task functions, using the property names requestOne and
+requestTwo, to async.series.
+console.log the results in the callback for series when all the task functions
+have completed.
+Like the previous challenge there has been plenty of boilerplate code given with hints so the challenge should be
+quick to solve. The solution should look like this
+
+var http = require('http');
+var async = require("async");
+var firstpath = process.argv[2];
+var secondpath = process.argv[3];
+
+async.series({
+    requestOne: function(cb){
+        http.get(firstpath, function(res){
+            var body = '';
+            res.on('data', function (chunk) {
+                        body += chunk.toString();
+                    }).on('end', function () {
+                        cb(null, body);
+                    });
+                }).on('error', function (err){
+            return cb(err);
+        });
+    },
+    requestTwo: function(cb){
+        http.get(secondpath, function(res){
+            var body = '';
+            res.on('data', function (chunk) {
+                        body += chunk.toString();
+                    }).on('end', function () {
+                        cb(null, body);
+                    });
+                }).on('error', function (err) {
+            return cb(err);
+        });
+     }    
+    },
+    function(err, result){
+      if (err) return console.error(err);
+      console.log(result);
+    }
+);
+
+As you can see the previous challenge gave a lot of code that could be reused and from there it was a matter of
+changing only a few things using the hints and documentation. The official solution is also well worth a look
+
+var http = require('http')
+      , async = require('async');
+    
+    async.series({
+      requestOne: function(done){
+        fetchURL(process.argv[2], done);
+      },
+      requestTwo: function(done){
+        fetchURL(process.argv[3], done);
+      }
+    },
+    function(err, result){
+      if (err) return console.error(err);
+      console.log(result);
+    });
+    
+    function fetchURL(url, done) {
+      var body = '';
+      http.get(url, function(res){
+        res.on('data', function(chunk){
+          body += chunk.toString();
+        });
+    
+        res.on('end', function(chunk){
+          done(null, body);
+        });
+      }).on('error', function(e){
+        done(e);
+      });
+    }
+
+They have chose to do things slightly different by defining a seperate function and then calling it in the series.
