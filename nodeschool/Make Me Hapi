@@ -50,3 +50,41 @@ server.route({
 server.start();
 
 As can be seen there was not much to do using the previous code other than to change the handler method values.
+
+
+
+Level 3 Handling -
+The third challenge in this set asks for a server to be created which responds to requests to / with a static HTML 
+file named index.html containing the following:
+
+    <html>
+        <head><title>Hello Handling</title></head>
+        <body>
+            Hello Handling
+        </body>
+    </html>
+
+This should be fairly similar to the previous challenges so that meant that the previously written code can again
+be reused. The solution then should look like this
+
+var Hapi = require('hapi');
+var path = require("path");
+var server = new Hapi.Server();
+var portNum = process.argv[2];
+
+
+server.connection({host: 'localhost', port: Number(portNum || 8080)});
+
+server.route({
+                method : 'GET',
+                path : '/',
+                handler : {
+                    file: path.join(__dirname,'public/index.html')
+                }
+            });
+
+server.start();
+
+Again there are questions over some bugs in this set of challenges so it may not be the ide but this is the
+correct solution, one note to remember is that the dirname has 2 underscores in front of it not 1.
+
