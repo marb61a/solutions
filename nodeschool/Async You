@@ -131,4 +131,39 @@ var http = require('http')
       });
     }
 
-They have chose to do things slightly different by defining a seperate function and then calling it in the series.
+They have chosen to do things slightly different by defining a seperate function and then calling it in the series.
+
+
+
+Level 3 Each -
+In this the third level the challenge is to use async.each. The task itself is this -
+Create a program that will receive two URLs as the first and second command-line
+arguments.
+Then using http.get, create two GET requests to these URLs and console.log
+any errors
+As usual there is a lot of boilerplate code and hints and this along with experience and code from the previous
+examples should provide a solution. This should look like
+
+var http = require('http');
+var async = require("async");
+var firstUrl = process.argv[2];
+var secondUrl = process.argv[3];
+
+async.each([firstUrl, secondUrl], function(item, done){
+    http.get(item, function(res){
+        res.on('data', function(chunk){
+            
+        });
+        res.on('end', function() {
+            done();
+        });
+        }).on('error', function (err) {
+            done(err);
+        });
+        }, function(err){
+            if (err)
+            console.log(err);
+});
+
+Again there is not that much difference between the official solution and this probably from using the hints
+and the boilerplate code.
