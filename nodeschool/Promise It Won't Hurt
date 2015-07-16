@@ -135,4 +135,39 @@ defer.promise
 
 defer.resolve("MANHATTAN");
 
-The was not many ways to do this so even the official solution is the same.
+There were not many ways to do this so even the official solution is the same.
+
+
+
+
+Level 6 Throw an error - 
+This is the sixth challenge in the series and this time the task is to -
+1. Build a function called parsePromised that creates a promise,
+   performs JSON.parse in a try/catch block, and resolves or rejects
+   the promise depending on whether an error is thrown.
+   **NOTE** your function should synchronously return the promise!
+2. Build a sequence of steps like the ones shown above that catches
+   any thrown errors and logs them to the console.
+As can be seen this challenge continues to build upon the previous ones and as has been standard practice code
+from previous examples will be reused along with hints and boilerplate from the documentation. The solution itself
+will look like this 
+
+var q = require('q');
+var defer = q.defer();
+var invalidJSON = process.argv[2];
+
+function parsePromised(jsonData){
+    try{
+        defer.resolve(JSON.parse(jsonData));
+    }catch(e){
+        defer.reject(e);
+    }
+    
+    return defer.promise;
+}
+
+parsePromised(invalidJSON)
+    .then(null, console.log);
+
+The solution itself is relatively straightforward having read the documentation and used all the hints etc. The
+official solution itself is similar but this one is equally valid.
