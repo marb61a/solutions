@@ -88,3 +88,38 @@ server.start();
 Again there are questions over some bugs in this set of challenges so it may not be the ide but this is the
 correct solution, one note to remember is that the dirname has 2 underscores in front of it not 1.
 
+
+
+Level 4 Directories -
+This is the 4 challenge in makemehapi and in it the task is to -
+Create a server which routes requests to the path /foo/bar/baz/file.html to a
+file in a directory, e.g. public/file.html, which contains the following:
+
+    <html>
+        <head><title>Hello Directories</title></head>
+        <body>
+            Hello Directories
+        </body>
+    </html>
+There are a lot of hints and boilerplate and the comibination of these and reusing code from previous examples 
+should provide a great deal towards a solution which should look like this 
+
+var Hapi = require('hapi');
+var path = require("path");
+var server = new Hapi.Server();
+var portNum = process.argv[2];
+
+server.connection({host: 'localhost', port: Number(portNum || 8080)});
+
+server.route({
+                path : '/foo/bar/baz/{filename}',
+                method : 'GET',
+                handler : {
+                    directory:{ path: path.join(__dirname,'/public')}
+                }
+            });
+
+server.start();  
+
+Again due to an ide bug this was not passing but again I tried verified passing solutions and they failed too so
+there seems to be a bug in the set of challenges as others are not having an issue.
