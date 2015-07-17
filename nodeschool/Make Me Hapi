@@ -121,5 +121,42 @@ server.route({
 
 server.start();  
 
-Again due to an ide bug this was not passing but again I tried verified passing solutions and they failed too so
-there seems to be a bug in the set of challenges as others are not having an issue.
+Again due to a bug this was not passing but again I tried verified passing solutions and they failed too so
+there seems to be a bug in the set of challenges as others are also having an issue.
+
+
+
+Level 5 Views -
+In this challenge the task is to create a server which responds to requests to /?name=Handling using a template
+located at templates/index.html. For this challenge there is also a need to install the handlebars templating
+engine. The syntax in handlebars is very similar to the angular javascript framework. The solution will as is the
+norm make use of previous code and all the boilerplate and hints from the challenge. The solution is
+
+var Hapi = require('hapi');
+var path = require("path");
+var server = new Hapi.Server();
+var portNum = process.argv[2];
+
+var viewOptions = {
+                    views: {
+                            path: path.join(__dirname, '/templates'),
+                    engines: {
+                            html: require('handlebars')
+                            }
+                        }
+                  };
+
+server.connection('localhost', Number(portNum || 8080), viewOptions);
+
+
+server.route({
+                method : 'GET',
+                path : '/',
+                handler : {
+                    view: "index.html"
+                }
+            });
+
+server.start();
+
+Again due to bugs the solution is causing errors but so are verified solutions.
