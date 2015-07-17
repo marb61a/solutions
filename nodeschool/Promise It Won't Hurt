@@ -171,3 +171,18 @@ parsePromised(invalidJSON)
 
 The solution itself is relatively straightforward having read the documentation and used all the hints etc. The
 official solution itself is similar but this one is equally valid.
+
+
+
+
+Level 7 Using Qfcall
+In this challenge the task is to use fcall to replace the entire parsePromised function from the previous lesson.
+This means that there is a lot of code reuse but no hints etc so the solution should be 
+
+var q = require('q');    
+var pathJSON = process.argv[2];
+
+q.fcall(JSON.parse, pathJSON)
+    .then(null, console.log);
+    
+Much different and really simplifies code.    
