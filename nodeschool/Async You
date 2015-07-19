@@ -167,3 +167,35 @@ async.each([firstUrl, secondUrl], function(item, done){
 
 Again there is not that much difference between the official solution and this probably from using the hints
 and the boilerplate code.
+
+
+
+Level 4 Map -
+In this challenge the task according to the site is to -
+Write a program that will receive two command-line arguments to two URLs.
+Using http.get create two GET requests to these URLs.
+You will need to use async.map, then console.log the results array.
+This is fairly similar to challenges from other sets so using them should provide a quick solution.
+
+var http = require('http');
+var async = require("async");
+var input = process.argv.slice(2);
+
+async.map(input, function(item, done){ 
+    http.get(item, function(res){
+        var result = "";
+        res.on('data', function (chunk) {
+            result += chunk.toString();
+        });
+        res.on('end', function () {
+        return done(null, result);
+        });
+    });
+},function(err, result){
+      if (err) return console.error(err);
+      console.log(result);
+    }
+);
+
+As can be seen it was just a matter of reusing a lot of previous examples code and slightly adjusting the input
+parameters.
