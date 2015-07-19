@@ -76,7 +76,7 @@ You do not need to put timeout values but reusing previous code from previous ex
 that it was a good idea to keep in.
 
 
-Level 4 - Always Async
+Level 04 - Always Async
 In this challenge the description of the task is long so I will just copy it to here
 In this lesson, we are going to prove to ourselves that this is the case by 
 writing a script that does the following:
@@ -106,7 +106,7 @@ As you can see the description is longer than the challenge.
 
 
 
-Level 5 Values And Promises -
+Level 05 Values And Promises -
 This is the fifth challenge and again it is better to let the site do the talking about the task
 Construct a promise chain that returns VALUES to prove to yourself
 that promise handlers will wrap your returned values in promises 
@@ -140,7 +140,7 @@ There were not many ways to do this so even the official solution is the same.
 
 
 
-Level 6 Throw an error - 
+Level 06 Throw an error - 
 This is the sixth challenge in the series and this time the task is to -
 1. Build a function called parsePromised that creates a promise,
    performs JSON.parse in a try/catch block, and resolves or rejects
@@ -175,7 +175,7 @@ official solution itself is similar but this one is equally valid.
 
 
 
-Level 7 Using Qfcall
+Level 07 Using Qfcall
 In this challenge the task is to use fcall to replace the entire parsePromised function from the previous lesson.
 This means that there is a lot of code reuse but no hints etc so the solution should be 
 
@@ -186,3 +186,50 @@ q.fcall(JSON.parse, pathJSON)
     .then(null, console.log);
     
 Much different and really simplifies code.    
+
+
+
+Level 08 An important rule -
+In this challenge the task according to the sites documentation is this -
+We are going to create a chain of functions that ALL print to the console.  
+
+1. Create a function "throwMyGod" that throws an Error with 
+   text "OH NOES"
+2. Create a function "iterate" that prints the first argument 
+   (an integer) to it and then returns that argument + 1;
+3. Create a promise chain that wraps your iterate method using Q's
+   fcall then a series of iterations that attempts to perform iterate
+   10 times.  
+4. Attach console.log as a rejection handler at the bottom of your
+   chain.
+5. Insert a call to "throwMyGod" after your 5th call of "iterate"
+
+Again there is a lot of documentation explaining and offering plenty of tips and tricks as well as boilerplate
+code to be used along with reusing previous examples. The solution then should look like this
+
+var q = require('q');
+
+function throwMyGod(){
+    throw new Error("OH NOES");
+}
+
+function iterate(i){
+    console.log(i);
+    return ++i ;
+}
+
+q.fcall(iterate, 1)
+    .then(iterate)
+    .then(iterate)
+    .then(iterate)
+    .then(iterate)
+    .then(throwMyGod)
+    .then(iterate)
+    .then(iterate)
+    .then(iterate)
+    .then(iterate)
+    .then(iterate)
+    .then(null, console.log);
+    
+As can be seen the solution is straightforward but placing the increment after i will cause failure so it has to be
+before.
