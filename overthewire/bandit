@@ -184,3 +184,28 @@ openssl s_client -connect 127.0.0.1:30001 or
 openssl s_client -connect localhost:30001
 
 Either one works.
+
+
+
+Level 16 - 17
+The challenge for this level is to find the password for the next level by submitting the password of the current 
+level to a localhost port between 31000 and 32000. There is only one that will give the password and you will need
+to use some utilities as you will need to see which uses ssl. There are a few different tools to do the job but the
+one most used by people is Nmap. Nmap has its own syntax but there is a great tutorial on common uses at
+http://www.cyberciti.biz/networking/nmap-command-examples-tutorials/.
+The first scan in the challenge looks like this - 
+
+nmap -p 31000-32000 localhost
+
+This shows that there are 5 ports open and there are a couple of ways of tackling a solution, one is to test each
+port manually and the other is to use nmaps inbuilt scripting to automate it, either way the port in question is
+31790 and you can use ssl to connect -
+
+openssl s_client -connect localhost:31790.
+
+This gives an ssh key which can be used to get the next level key
+make a file - eg touch sshprivatekey.private
+set permissions - eg chmod 600 sshprivatekey.private
+connect - ssh -i ./sshprivatekey.private bandit17@localhost
+
+This will give you the next level.
