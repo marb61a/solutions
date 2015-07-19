@@ -145,3 +145,33 @@ where([{ first: 'Romeo', last: 'Montague' }, { first: 'Mercutio', last: null },
 
 This was relatively quick, there are other solutions that make use of the api recommended by the site but this is 
 simpler as it is just 2 loops and using the array.last method.
+
+
+
+
+DNA Pairing - 
+The task here according to the site is 
+The DNA strand is missing the pairing element. Match each character with the missing element and return the results 
+as a 2d array.
+Base pairs are a pair of AT and CG. Match the missing element to the provided character.
+Return the provided character as the first element in each array.
+This is the solution, there are others such as using switch cases but from reading various sites this seems a 
+little quicker
+
+function pair(str) {
+  var arr = [];
+  var dnaLetterPairs = {
+        "A": "T", 
+        "T": "A", 
+        "C": "G", 
+        "G": "C"
+  };
+  
+  str.split("").forEach(function(char){
+    arr.push([char, dnaLetterPairs[char]]);
+  });
+  
+ return arr;
+}
+
+pair("GCG");
