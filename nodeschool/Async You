@@ -199,3 +199,28 @@ async.map(input, function(item, done){
 
 As can be seen it was just a matter of reusing a lot of previous examples code and slightly adjusting the input
 parameters.
+
+
+
+
+Level 5 Times -
+The goal of this challenge according to the site is to 
+Write a program that will receive two command line arguments containing
+the hostname and port. Using http.request send a POST request to
+
+    url + '/users/create'
+
+with the body containing a JSON.stringify'ed object:
+
+    {"user_id": 1}
+
+Do this five times with each time the user_id property being incremented,
+starting at 1.
+Once these requests are done, send a GET request to:
+
+    url + '/users'
+
+and console.log the response body for the GET request.
+There are a few different parts to this challenge and the hints as well as previous challenges code are going to
+be used to help as async.series is needed. Also I will need to do a fair amount of reading as async.series is still
+not that familiar.
