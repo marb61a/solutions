@@ -190,3 +190,54 @@ server.route({
 server.start();
 
 Unfortunately this still has bugs that are not resolved so verifying the solution is not easy.
+
+
+
+
+Level 7 Helping
+In this challenge the task is according to the site to -
+Create a server which responds to requests to /?name=Helping&suffix=! using
+the template from the VIEWS exercise.
+Instead of placing the query parameter directly in the template, create a helper
+at helpers/helper.js and use this helper in the template to output the name
+query parameter.
+As there is a lot of previously written code to be reused and the solution has a lot of similarities with the
+learnyounode exercise it should be quick to solve. This is the main file
+
+var Hapi = require('hapi');
+var path = require("path");
+var server = new Hapi.Server();
+var portNum = process.argv[2];
+
+var viewOptions = {
+                    views: {
+                            path: path.join(__dirname, '/templates'),
+                            helpersPath: path.join(__dirname, '/helpers'),
+                    engines: {
+                            html: require('handlebars')
+                            }
+                        }
+                  };
+
+server.connection('localhost', Number(portNum || 8080), viewOptions);
+
+
+server.route({
+                method : 'GET',
+                path : '/',
+                handler : {
+                    view: "index.html"
+                }
+            });
+
+server.start();
+
+and this is the helpers/helper.js file code
+
+module.exports = function(context){
+    var helperQuery = context.data.root.query;
+    return helperQuery.name +helperQuery.suffix;
+};
+
+As you can see there are only minor adjustments needed for the hapi file and the helper.js file has minimal code
+particularly when the hints are taken into account.
