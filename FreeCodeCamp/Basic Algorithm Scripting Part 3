@@ -1,1 +1,27 @@
 This is part 3 of my solutions to the Basic Algorithm Scripting bonfires on freecodecamp
+
+Seek and Destroy - 
+The challenge here according to the site is the following -
+You will be provided with an initial array (the first argument in the destroyer function), followed by one or more 
+arguments. Remove all elements from the initial array that are of the same value as these arguments.
+The solution itself is relatively simple but like always there are multiple way to do the same thing
+
+function destroyer(arr) {
+  
+  var args = [].slice.call(arguments, 0);
+  var array = [];
+  var secondArray = args.shift();
+  
+  secondArray.forEach(function(val){
+    if(args.indexOf(val) < 0){
+      array.push(val);
+    }
+  });
+  
+  return array;
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+
+I have looked at some other solutions that involve filter but as I am more familiar with the simpler methods I will
+stick with them.
