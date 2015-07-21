@@ -241,3 +241,43 @@ module.exports = function(context){
 
 As you can see there are only minor adjustments needed for the hapi file and the helper.js file has minimal code
 particularly when the hints are taken into account.
+
+
+
+
+Level 8 Streams -
+This is the 8th challenge of the series and according to the site the task is to
+Create a Hapi server which responds to GET requests to / by streaming a ROT13'd version of a file that contains:
+
+    The Pursuit of Hapi-ness
+
+Output should look like:
+
+    Gur Chefhvg bs Uncv-arff
+
+Rot13 is a type of caeser cypher where letters are moved by 13 places hence the name. On a linux box it is a matter
+or running an encoding or decoding app on the command line but doing it programatically will be fifferent. The
+code from previous examples and the hints should be enough to get close to a solution.
+
+var Hapi = require('hapi');
+var fs = require("fs");
+var path = require("path");
+var server = new Hapi.Server();
+var rot13 = require('rot13-transform');
+var portNum = process.argv[2];
+
+server.connection('localhost', Number(portNum || 8080));
+
+server.route({
+                method : 'GET',
+                path : '/',
+                handler : function(req, reply){
+                    reply(fs.createReadStream(path.join(__dirname, 'rot13file.txt')).pipe(rot13()));
+                }
+            });
+            
+
+server.start();    
+
+This is my solution unfortunately the bugs which seem to affect make me hapi are stopping me from verifying 
+solutions so I will have to stop here for the time being until a solution is found.
