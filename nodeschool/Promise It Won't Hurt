@@ -251,5 +251,49 @@ In this challange the task that has been set according to the site is -
 4. Attach a function to setTimeout that resolves both of the promises you created
    and passed to your function with the values "PROMISES" and "FTW" respectively.
    Set the timeout delay to 200ms.
+   
 There is a lot in this challenge but from reading the task it seems to be combination of previous tasks but it
-a bit more difficult because of this combining.
+a bit more difficult because of this combining. The solution is below and there are a few ways of doing this but
+the easiest way I found was to use
+
+var q = require('q');
+var defer1 = q.defer();    
+var defer2 = q.defer();
+
+function all(promise1, promise2){
+    var counter = 0;
+    var deferred = q.defer();
+    var vals = [];
+    
+    promise1.then(function(result){
+        vals [0] = result;
+        counter++;
+        if(counter >= 2){
+            deferred.resolve(vals);
+        }
+    })
+    .then(null, deferred.reject)
+    .done();
+    
+    promise2.then(function(result){
+        vals [1] = result;
+        counter++;
+        if(counter >= 2){
+            deferred.resolve(vals);
+        }
+    })
+    .then(null, deferred.reject)
+    .done();
+    
+    return deferred.promise;
+}
+
+all(defer1.promise, defer2.promise).then(console.log).done();
+
+setTimeout(function(){
+    defer1.resolve("PROMISES");
+    defer2.resolve("FTW");
+}, 200);
+
+As I said there were a few different ways of doing this such as not using a function in setTimeout() but doing
+eash resolution individualy and insted of having an empty array vals[] you could have used different variables.
