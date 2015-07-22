@@ -53,3 +53,28 @@ message. A look through the source code reveals little but as usual persistence 
 they will need to be examined using a tool like the web developer plugin for firefox. When the cookie is examined
 there is a called loggedin with a value of 0 for its contents, this will have to be edited to 1 in order for the
 challenge to be won.
+
+
+Level 6 - 
+In the sixth natas challenge the task is first to examine a php based form. When the source code is examined
+as is standard there is shown a file called secret.inc in the includes directory where was being passed into the 
+php code. Navigating to this file brings up a blank page but again having a look at the source code shows the 
+password needed to continue.
+
+
+
+Level 7 -
+In this challenge there is a file presented with 2 tabs caled home and about. As is standard having a look at the
+source code gives away a very big reveal with a hint stating that - 
+
+password for webuser natas8 is in /etc/natas_webpass/natas8
+
+All that has to be done is to add this on to the address of level7 such as below.
+
+http://natas7.natas.labs.overthewire.org/index.php?page=/etc/natas_webpass/natas8
+
+This kind of attack is know as a local file inclusion attack and there is a very good explanation of the attack at
+the owasp site located here -
+
+https://www.owasp.org/index.php/Testing_for_Local_File_Inclusion
+
