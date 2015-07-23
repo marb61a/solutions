@@ -1,3 +1,12 @@
 These are my solutions to the Nodeschool Browserify series of challenges
 
-Level 1 - 
+Level 1  BEEP BOOP - 
+The first task as is standard across all of the nodeschool series of challenges is a simple one in this case it is
+simply to print BEEP BOOP to the console using console.log().
+
+console.log('BEEP BOOP');
+
+
+
+Level 2
+
