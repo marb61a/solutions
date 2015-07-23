@@ -296,4 +296,32 @@ setTimeout(function(){
 }, 200);
 
 As I said there were a few different ways of doing this such as not using a function in setTimeout() but doing
-eash resolution individualy and insted of having an empty array vals[] you could have used different variables.
+each resolution individually and insted of having an empty array vals[] you could have used different variables.
+
+
+
+Level 10 Fetch Json -
+In this the 10th challenge the task is this according to the documentation -
+Fetch JSON from "http://localhost:1337" and console.log it.
+
+There are several things you will want to know:
+
+1. q-io's http module has a "read" method which returns a promise for the content
+   of a successful (status 200) http request.
+2. Parse the returned JSON and console.log it for much win.
+
+This challenge is a bit tricky but the implementation is relatively straightforward.
+If you get stuck, refer to the q-io documentation for clarification. 
+There seems to be only one real way of solving this task with maybe minor differences so this is the solution
+
+var HTTP = require('q-io/http')
+var jsonPort = ('http://localhost:1337');
+
+HTTP.read(jsonPort).then(function(json){
+    console.log(JSON.parse(json));
+})
+.then(null, console.log)
+.done();
+
+As can be seen there is not much scope for different approaches but as I have been doing things a certain way it is
+best to continue.
