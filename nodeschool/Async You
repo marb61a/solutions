@@ -223,4 +223,68 @@ Once these requests are done, send a GET request to:
 and console.log the response body for the GET request.
 There are a few different parts to this challenge and the hints as well as previous challenges code are going to
 be used to help as async.series is needed. Also I will need to do a fair amount of reading as async.series is still
-not that familiar.
+not that familiar. The solution is this
+
+var http = require('http');
+var async = require("async");
+var hostName = process.argv[2];
+var portNum = process.argv[3];
+var  url = 'http://' +  hostName + ':' + portNum;
+
+async.series({
+  post: function (done) {
+          
+    var options = {
+      hostname: hostName,
+      port: portNum,
+      method: 'POST',
+      path: '/users/create'
+    };
+
+    async.times(5, function (n, next) {
+      var req = http.request(options, function (res) {
+
+        res.on('data', function (chunk) {
+        });
+
+        res.on('end', function () {
+          next(null);
+        });
+      }).on('error', function (err) {
+        return console.error(err);
+      });
+
+      var data = JSON.stringify({ user_id : n + 1 });
+      req.write(data);
+      req.end();
+    }, function (err) {
+      if (err) {
+        return console.error(err);
+      }
+      done(null);
+    });
+
+ }, 
+    
+    get : function(done){
+    http.get(url + '/users', function(res){
+       var body = '';
+
+     res.on('data', function (chunk) {
+       body += chunk.toString();
+     });
+
+     res.on('end', function () {
+       done(null, body);
+     });
+     });
+     }
+    }, function (err, results) {
+      if (err) {
+        return console.error(err);
+      }
+      console.log(results.get);
+    });
+    
+There are a few different ways of solving the challenge but all seem to be variations on a theme, I did need some
+assistance on this challenge as I was having issues.
