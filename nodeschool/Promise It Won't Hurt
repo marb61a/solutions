@@ -323,5 +323,47 @@ HTTP.read(jsonPort).then(function(json){
 .then(null, console.log)
 .done();
 
-As can be seen there is not much scope for different approaches but as I have been doing things a certain way it is
-best to continue.
+As can be seen there is not much scope for different approaches but I think it is best to continue as before.
+
+
+
+
+Level 11 - Do Some Work
+This is the 11th and penultimate challenge in the Promises series, the task this time according to the site is to
+Let's talk to two remote processes over HTTP being run by your friend
+and mine, "localhost"
+
+Port 7000: Faux session cache (redis or some such thing) 
+Port 7001: Faux database (mongo, level, postgres etc)
+
+As in the previous lesson, use the "q-io" module to create promises
+as wrappers for HTTP responses.  HINT: You will probably need more than
+one promise...
+
+1. Send an HTTP GET request to the session cache on port 7000.  A JSON payload
+   will be returned to you containing a primary key called "id".  
+2. Grab that id from the session response and send an HTTP GET request to 
+   your database on port 7001 to the url "localhost:70001/<id>".
+3. If successfully done, your database will return a user object.  console.log 
+   it to win many nerd-points.
+
+As you can see there is a fair amount to this challenge but a lot of it will reuse code from previous challenges
+and there are some good hints available as part of the documentation. With that in mind the solution should look
+something like this -
+
+var HTTP = require('q-io/http');
+var localOne = ('http://localhost:7000/');
+var localTwo = ('http://localhost:7001/');
+
+HTTP.read(localOne)
+.then(function(id){
+    var result = id.toString();
+    return HTTP.read(localTwo + result);
+})
+.then(function(json){
+    console.log(JSON.parse(json));
+})
+.done();
+
+The solution was much quicker than I initially thought as there was a lot of code from the previous example that
+could be reused.
