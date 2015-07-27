@@ -8,5 +8,15 @@ console.log('BEEP BOOP');
 
 
 
-Level 2
+Level 2 Using NPM Packages -
+This second task is also fairly basic as the documentation asks that 
+For this level, use `prompt()` to fetch a string. Split the string that
+`prompt()` returns by commas (`str.split(',')` returns a separated array of
+strings) and run this array through `uniq()` to discard repeated items.
+Use `console.log()` to print the resulting uniq array.
+The solution is - 
+var uniq = require("uniq");
+var str = prompt();
+
+console.log(uniq(str.split(',')));
 
