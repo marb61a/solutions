@@ -367,3 +367,28 @@ HTTP.read(localOne)
 
 The solution was much quicker than I initially thought as there was a lot of code from the previous example that
 could be reused.
+
+
+
+Level 12 - More Functional
+This is the final challenge in the Promises sereis and the task is to refactor the previous solution in order to
+make use of functional programming. As part of the challenge you need to install the lodash library which is a
+functional library. The solution is this - 
+
+var HTTP = require('q-io/http');
+var localOne = ('http://localhost:7000/');
+var localTwo = ('http://localhost:7001/');
+var dash = require("lodash");
+
+function builder(id){
+    return localTwo + id;
+}
+
+HTTP.read(localOne)
+.then(dash.compose(HTTP.read, builder))
+.then(dash.compose(console.log, JSON.parse))
+.then(null, console.error)
+.done();
+
+As can be seen there is a lot of similarity between this and the previous solution especially as there are similar
+variables and requirements needed. There are obviously more function methods but this is the best solution for now.
