@@ -20,3 +20,37 @@ var str = prompt();
 
 console.log(uniq(str.split(',')));
 
+
+
+Level 3 Single Exports 
+In the third challenge of the series the task is similar to a challenge from another set as the task involves
+refactoring the pervious challenge in to 2 file. The documentaion provides a better description -
+First, create a file called `uniquely.js`. In this file, assign a function
+to `module.exports` that takes a comma-separated string as input and
+returns a uniq list as output. Use the `uniq` module like from the "using
+npm packages" level.
+
+Now in your entry file (the file that you pass to the browserify command),
+use `require()` with a relative path string to your `'./uniquely.js'`
+file.
+
+When you `require()` the `uniquely.js` file, `require()` will return
+whatever value you set `module.exports` to in `uniquely.js`. Call the
+exported function with the value from `prompt()` as an argument and print
+the return value with `console.log()`.
+The description is probably longer than the solution which is here
+
+Single Exports file -
+var uniquelyFile = require("./uniquely.js");
+
+var result = uniquelyFile(prompt());
+console.log(result);;
+
+Uniquely.js file -
+var uniq = require('uniq');
+
+module.exports = function(str){
+    return uniq(str.split(','));
+};
+
+As can been seen the solution is indeed fairly easy.
