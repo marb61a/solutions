@@ -288,3 +288,48 @@ async.series({
     
 There are a few different ways of solving the challenge but all seem to be variations on a theme, I did need some
 assistance on this challenge as I was having issues.
+
+
+
+Level 6 Reduce -
+This is the penultimate challenge in the series and according to the site documentation the task is this
+Write a program that will receive an URL as the first command line argument.
+
+To this URL, for each of the values in the following array, send a GET request
+using http.get with a query parameter named number set at the proper value:
+
+    ['one', 'two', 'three']
+
+Each time, convert the response body to Number and add it to the previous value.
+console.log the final reduced value.
+There are several hints offered and there also seems to be a lot of code that has been used in previous challenges
+that can be reused in this one. This also has a lot of similarities to the reduce exercise from the functional
+javascript set of challenges which also offers some help in solving the challenge. The solution should be this
+
+var http = require('http');
+var async = require("async");
+var urlPath = process.argv[2];
+
+async.reduce(['one', 'two', 'three'], 0, function(memo, item, callback){
+     var body = '';
+     
+     http.get(urlPath + "?number=" + item, function(res){
+         
+         res.on('data', function (chunk) {
+           body += chunk.toString();
+         });
+    
+         res.on('end', function () {
+           callback(null, memo + Number(body));
+         });
+         });
+        }, function (err, result) {
+              if (err) {
+                return console.error(err);
+              }
+              console.log(result);
+        });
+
+Oddly enough this is the same as the official solution, there are a few different ways of doing this I also used
+parseFloat() and parseInt() instead of Number(), parseInt must get an additional input which defines the radix used
+as it needs to be explicit.
