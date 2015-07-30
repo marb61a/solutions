@@ -80,7 +80,7 @@ Run cat on the file and the password
 
 
 
-Level 8 - 
+Level 7 - 8 
 For this challenge the password needed for the next level is stored in the file data.txt next to the word 
 millionth. This means that we can pipe cat to grep to solve this. This solution is this
 
@@ -90,7 +90,7 @@ The grep command is a pattern matching command and is very useful.
 
 
 
-Level 9 - 
+Level 8 - 9 
 In this particular challenge there isa need to find a unique line among many. The quickes and easiest
 solution is to pipe a few commands together to do this and they do need to be in proper order.
 
@@ -102,7 +102,7 @@ importance of the proper ordering of commands
 
 
 
-Level 10 - 
+Level 9 - 10  
 This challenge is very similar to the preceeding couple of challenges, in this particular challenge the
 goal is as usual to get the password needed for the next level which in this case is stored in the file data.txt 
 among a few lines of human-readable strings starting with ‘=’ characters. Again proper use of grep will be key here
@@ -115,7 +115,7 @@ using strings and then grep it will enable the password to be seen.
 
 
 
-Level 11 - 
+Level 10 - 11 
 Similar to the previous level the needed data is stored in a file called data.txt, this challenge is a
 step up though as there is a type of encoding called base64 used to encode the data. This means that there will be
 a decoding of the data needed. Luckily enough Linux has a facility for decoding this data so the solution will be
@@ -127,7 +127,7 @@ multitude of tutorials available which should be looked at.
 
 
 
-Level 12 - 
+Level 11 - 12 
 In this challenge we are tasked with decrypting a file. When we use ls we are given a file called
 data.txt. This file has been encrypted using a method called Rot13 it works by replacing a letter with the letter 
 13 letters after it in the alphabet. There is a far better explanation here - 
@@ -143,7 +143,7 @@ Basically you are running cat on the file and then it is translated using regex 
 
 
 
-Level 132 - 13
+Level 12 - 13
 The challenge here is to get the password for the next level which is stored in the file data.txt, which is a 
 hexdump of a file that has been repeatedly compressed. This means that the challenge itself is not difficult but
 is tedious as repeated decompressing is needed. I wonder if it was possible using something like zcat to drill
@@ -209,3 +209,15 @@ set permissions - eg chmod 600 sshprivatekey.private
 connect - ssh -i ./sshprivatekey.private bandit17@localhost
 
 This will give you the next level.
+
+
+
+Level 17 - 18
+This is a fairly easy problem to solve, there are 2 password files, password.old and password.new. The password
+that is needed is the only difference between the files. There are a multitude of ways to solve this but using diff 
+is the easiest way -
+
+diff passwords.new passwords.old
+
+This command gives the difference between the files. The use of diff is very extensive in fields like reverse 
+engineering and exploit development.
