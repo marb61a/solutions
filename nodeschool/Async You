@@ -333,3 +333,16 @@ async.reduce(['one', 'two', 'three'], 0, function(memo, item, callback){
 Oddly enough this is the same as the official solution, there are a few different ways of doing this I also used
 parseFloat() and parseInt() instead of Number(), parseInt must get an additional input which defines the radix used
 as it needs to be explicit.
+
+
+
+Level 7 Whilst -
+This is the seventh and final challenge in AsyncYou and according to the documentation the task is to
+Write a program that will receive a single command line argument to a URL.
+
+Using async.whilst and http.get, send GET requests to this URL until
+the response body contains the string "meerkat".
+
+console.log the amount of GET requests needed to retrieve the "meerkat" string.
+There are hints provided and it would be wise to expect to use a lot of previous code as all challenges have made
+use of this structure. The solution should therefore look something like this -
