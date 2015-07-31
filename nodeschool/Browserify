@@ -22,7 +22,7 @@ console.log(uniq(str.split(',')));
 
 
 
-Level 3 Single Exports 
+Level 3 Single Exports -
 In the third challenge of the series the task is similar to a challenge from another set as the task involves
 refactoring the pervious challenge in to 2 file. The documentaion provides a better description -
 First, create a file called `uniquely.js`. In this file, assign a function
@@ -53,4 +53,36 @@ module.exports = function(str){
     return uniq(str.split(','));
 };
 
-As can been seen the solution is indeed fairly easy.
+As can been seen the solution is indeed fairly self-explanatory.
+
+
+Level 4 Multi Export -
+This is the 4th level of browserify and it is fairly similar to challenges from other sets, the details of the
+task itself in the documentations words is -
+For this level, call `prompt()` twice from your entry file to obtain 2
+values: the first is a string you should parse into an array of objects and
+the second value is an array you should serialize back into a string. Print
+each return value with `console.log()`.
+
+In a second file `./ndjson.js`, export a `parse()` and `stringify()`
+function by assigning properties onto the `exports` object.
+As can be seen from the description a lot of what is asked is similar to other challenges so both ideas and code 
+can be used in the solution which is here -
+The main file code is :
+
+var jsonFile = require('./ndjson');
+var firstVal = prompt('String : ');
+var secondVal = prompt('Array : ');
+
+console.log(jsonFile.parse(firstVal));
+console.log(jsonFile.stringify(secondVal));
+
+ndjson.js code is here :
+
+exports.parse = function(str){
+    return str.split('\n').map(JSON.parse);
+};
+
+exports.stringify = function(rows){
+    return rows.map(JSON.stringify).join('\n');
+};
