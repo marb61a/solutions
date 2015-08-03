@@ -346,3 +346,68 @@ the response body contains the string "meerkat".
 console.log the amount of GET requests needed to retrieve the "meerkat" string.
 There are hints provided and it would be wise to expect to use a lot of previous code as all challenges have made
 use of this structure. The solution should therefore look something like this -
+
+var http = require('http');
+var async = require("async");
+var urlPath = process.argv[2];
+var count = 0;
+var string = '';
+
+async.whilst(function(){
+    return string.trim() !== 'meerkat';
+    },
+    function(done){
+        count++;
+        var body = '';
+        http.get(urlPath, function(res){
+        res.on('data', function (chunk) {
+        body += chunk.toString();
+     });
+
+     res.on('end', function () {
+        string = body;
+       done();
+      });
+    });
+    },
+    function (err) {
+    if (err) return console.log(err);
+    console.log(count);
+  }
+);
+
+As can be seen the previous examples have given most of the solution, the official solution is slightly different
+but is well worth looking at 
+
+var http = require('http')
+      , async = require('async');
+    
+    var requestBody = '';
+    
+    var count = 0;
+    
+    async.whilst(
+      function() {
+        return !/meerkat/.test(requestBody.trim());
+      },
+    
+      function(done){
+        var body = '';
+        http.get(process.argv[2], function(res){
+          res.on('data', function(chunk){
+            body += chunk.toString();
+          });
+    
+          res.on('end', function(){
+            ++count;
+            requestBody = body;
+            done();
+          });
+        }).on('error', done);
+      },
+    
+      function(err){
+        if (err) return console.log(err);
+        console.log(count);
+      }
+    )
