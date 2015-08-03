@@ -380,11 +380,11 @@ As can be seen the previous examples have given most of the solution, the offici
 but is well worth looking at 
 
 var http = require('http')
-      , async = require('async');
+, async = require('async');
     
-    var requestBody = '';
+var requestBody = '';
     
-    var count = 0;
+var count = 0;
     
     async.whilst(
       function() {
