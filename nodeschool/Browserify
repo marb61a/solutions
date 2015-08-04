@@ -86,3 +86,24 @@ exports.parse = function(str){
 exports.stringify = function(rows){
     return rows.map(JSON.stringify).join('\n');
 };
+
+
+
+Level 5 Builtins -
+The challenge this time according to the documentation is -
+For this level, `prompt()` will return a web address.
+Parse the address's query string and print the "file" parameter from the
+query string relative to the rest of the web address.
+The solution should be quick enough to find as the challenge documentation advises to uses inbuilt functionality.
+The solution should therefore look like this -
+
+var url = require("url");
+var qString = require("querystring");
+var webAddr = prompt();
+var addrQuery = url.parse(webAddr).query;
+var addrParams = qString.parse(addrQuery);
+
+
+console.log(url.resolve(webAddr, addrParams.file));
+
+The solution is easy enough after reading through the challenge hints.
