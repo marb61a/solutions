@@ -221,3 +221,25 @@ diff passwords.new passwords.old
 
 This command gives the difference between the files. The use of diff is very extensive in fields like reverse 
 engineering and exploit development.
+
+
+
+Level 18 - 19
+This level can be a bit tricky because when attempting to connect someone has edited the bashrc file to log out
+when attempting to log in. The file is not hidden at all its the connecting that is the issue here. Luckily ssh
+allows for commands to be run as soon as connection is established so getting the password should be easy using 
+this command -
+ssh bandit.labs.overthewire.org -l bandit18 cat readme
+
+
+
+Level 19 - 20
+The level has a challenge involving setuid. Wikipedia has a tutorial on setuid at
+
+https://en.wikipedia.org/wiki/Setuid
+
+Back in the challenge itself, there is a file bandit20-do found when searching. Running the file using the
+./bandit20-do gives the message "Run a command as another user". Running the ./bandit20-do id command to find out
+the suid which turns out to be bandit20 which means that it runs with the privileges of bandit20. Running 
+./bandit20-do cat /etc/bandit_pass/bandit20 searches the bandit20 file for the needed password. This is an example
+of a privilege escalation attack.
