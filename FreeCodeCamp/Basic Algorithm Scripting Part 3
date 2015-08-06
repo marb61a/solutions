@@ -86,3 +86,23 @@ replace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
 
 Essentially you you are splitting the before and the after then performing checks for equality after you will 
 replace the before with the after.
+
+
+
+Convert HTML Entities -
+The challenge according to the freecodecamp site is to -
+Convert the characters "&", "<", ">", '"' (double quote), and "'" (apostrophe), in a string to their corresponding
+HTML entities. Not sure if it is a site bug but order is important in this challenge
+
+function convert(str) {
+  var newstr = str.replace( /&/g, '&amp;' )
+                  .replace( /</g, '&lt;' )
+                  .replace( />/g, '&gt;' )
+                  .replace( /"/g, '&quot;' )
+                  .replace( /'/g, '&apos;' );
+  
+  return newstr;
+}
+
+convert('Dolce & Gabbana');
+
