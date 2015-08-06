@@ -1,6 +1,6 @@
 These are my solutions to the levelmeup set of challenges from Nodeschool
 
-Level 1 -
+Level 1 - All Your base
 This is the first challenge of the series and as to be expected it is a fairly basic one to get going with. The task
 according to the documentation is to -
 Write a Node program that accepts two command-line arguments, X and
@@ -13,3 +13,28 @@ var x = process.argv[2];
 var y = process.argv[3];
 
 console.log("ALL YOUR " + x + " ARE BELONG TO " + y);
+
+
+
+Level 2 - Get Your Level On
+This is the second level in the series and according to the documentation the task is -
+Write a program that opens a `level` directory and reads a key from it.
+
+Your program should take two arguments, a LevelDB directory, and a key.
+your program should then retrive the value of that key, and write it to the console.
+
+for example, if `database_dir` contains a record `foo => bar` then the command
+`node levelread.js database_dir foo` should output `bar`.
+
+The hints section gives pretty much the whole solution apart from a few minor changes, so the solution should 
+look like this -
+
+var level = require("level");
+var x = process.argv[2];
+var db = level(x);
+
+db.get('levelmeup', function(err, value){
+    console.log(value);
+});
+
+As can be seen it it a fairly quick solution after using the boilerplate sample code from the hints.
