@@ -107,3 +107,54 @@ var addrParams = qString.parse(addrQuery);
 console.log(url.resolve(webAddr, addrParams.file));
 
 The solution is easy enough after reading through the challenge hints.
+
+
+
+
+Level 6 Build a Widget -
+In this challenge the task will be to -
+You should implement the widget module that will be loaded with
+`require('widget')`. Your widget module should create an html element from
+the html string:
+
+  <div>Hello <span class="name"></span>!</div>
+  
+Your widget module will need to implement `w.setName(str)` and
+`w.appendTo(target)`. `w.setName(str)` will need to update the "name"
+span's inner context with `str`. You can set the span element's
+`.textContent` once you have a handle on the span which you can obtain with
+`elem.querySelector('css selector goes here')`.
+
+You will also need to implement `w.appendTo(target)`, which appends the
+widget's internal html element to `target`. You can use
+`target.appendChild(elem)` to append the widget's element to the target.
+
+As can be seen there is a lot of things that need to be done to complete the challenge but there are a lot of 
+hints and a lot of requirements which should go a long way to completing the challenge. The solution with all of
+this in mind should be this -
+
+var domify = require("domify");
+var Widget = require('widget');
+var name = '';
+
+var widgetFunction = function(){
+    function htmlElement(){
+        return '<div>Hello <span class="name">' + name + '</span>!</div>';
+    }
+    
+    return{
+    setName : function(newName){
+        name = newName;
+    },
+    
+    appendTo: function (el) {
+      return el.appendChild(domify(htmlElement()));
+    }
+    };
+};
+
+module.exports = widgetFunction;
+
+This function is working the same as verified others but I am not getting the success message.
+
+  
