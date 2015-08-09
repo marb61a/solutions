@@ -158,3 +158,43 @@ module.exports = widgetFunction;
 This function is working the same as verified others but I am not getting the success message.
 
   
+
+Level 7 - Using Transforms
+This is the seventh challenge in the series and this time around the task is - 
+
+For this problem, we will use a browserify transform to load a text file
+and then we will apply some processing to the text file. Browserify
+transforms are used to pre-process input source files into something that
+browserify can read. For example, there are transforms for coffeescript
+(coffeeify), es6 syntax (es6ify), and more on npm!
+
+The text file you should read into your file is located at:
+/home/ubuntu/.nvm/v0.10.35/lib/node_modules/browserify-adventure/problems/using_transforms/wake.txt
+
+Use `brfs` to read that text file and print out the text file with leading
+line numbers every 5th line with line numbers starting at 0, inclusive of 0.
+
+You should pad the line number to 3 characters followed by a single space,
+followed by the original line contents. For lines without printed line
+numbers, print 4 spaces followed by the original line contents.
+
+After the fairly lengthy task discussion there are a lot of tips and hints on using different modules which may
+make things easier so the solution should look like this -
+
+var fs = require('fs');
+var sprintf = require("sprintf");
+var src = fs.readFileSync('wake.txt', 'utf8');
+var textlines = src.split('\n');
+
+textlines.forEach(
+    function(line, i){
+        if(i % 5 === 0){
+            console.log(sprintf("%3d %s", i, line));
+        }else{
+            console.log(sprintf("    %s", line));
+        }
+    }
+);
+
+Againd due to some issues I have had trouble verifying this solution but I tested other solutions that have been
+verified and was getiing the same errors.
