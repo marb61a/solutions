@@ -38,3 +38,45 @@ db.get('levelmeup', function(err, value){
 });
 
 As can be seen it it a fairly quick solution after using the boilerplate sample code from the hints.
+
+
+
+Level 3 - GET Basics
+The task in the third challenge is to -
+Write a program that opens a LevelDB data-store using `level`.
+
+The store will contain up to 10 entries with keys in the form:
+
+  keyX
+
+Where 'X' is an integer between 0 and 100.
+
+You must find those entries and print them out to the console, ordered
+by 'X', ascending. You should print them out with:
+
+  console.log(key + '=' + value)
+  // will output "key12=here is that random text"
+
+The full path to the data-store will be provided to your program as
+the first command-line argument.
+
+There are plenty of hints given so the challenge should be relatively straightforward and should look like this -
+
+var level = require("level");
+var x = process.argv[2];
+var db = level(x);
+
+for (var i = 0; i < 101; i++) {
+  (function (currKey) {
+    db.get(currKey, function (err, data) {
+      if (err && err.notFound) {
+        return;
+      }
+
+      console.log("%s=%s", currKey, data);
+    });
+  }("key" + i));
+}
+
+I did spend a lot of time testting various combinations of solutions but this is the quickest, the official 
+solution is well worth looking at.
