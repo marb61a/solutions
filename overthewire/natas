@@ -78,3 +78,49 @@ the owasp site located here -
 
 https://www.owasp.org/index.php/Testing_for_Local_File_Inclusion
 
+
+
+Level 8 -
+This is the eight challenge and it bears more than a passing similarity to the previous challenge. There is another
+php login form, upon looking at the source code for the page there is a variable called -
+  $encodedSecret = “3d3d516343746d4d6d6c315669563362″;
+This is likely to be the password but although it is not securely stored it is encoded. The solution is fairly
+easy as there are a couple of utlities available to decode the password.  The code itself is this
+
+</pre>
+<h1>natas8</h1>
+<div id="content">
+<?
+ 
+$encodedSecret = "3d3d516343746d4d6d6c315669563362";
+ 
+function encodeSecret($secret) {
+ 
+return bin2hex(strrev(base64_encode($secret)));
+ 
+}
+ 
+if(array_key_exists("submit", $_POST)) {
+ 
+if(encodeSecret($_POST['secret']) == $encodedSecret) {
+ 
+print "Access granted. The password for natas9 is ";
+ 
+} else {
+ 
+print "Wrong secret";
+ 
+}
+ 
+}
+ 
+?>
+<form method="post">
+Input secret: <input type="text" name="secret" />
+ 
+<input type="submit" name="submit" /></form>
+<div id="viewsource"><a href="index-source.html">View sourcecode</a></div>
+</div>
+
+As you can see there is a base64 encode which can be reversed using base64 decode and bin2hex can be reversed by
+hex2bin. Performing these actions will give the needed password.
