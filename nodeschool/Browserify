@@ -196,5 +196,26 @@ textlines.forEach(
     }
 );
 
-Againd due to some issues I have had trouble verifying this solution but I tested other solutions that have been
+Again due to some issues I have had trouble verifying this solution but I tested other solutions that have been
 verified and was getiing the same errors.
+
+
+
+Level 8 Writing Transforms -
+This is the 8th of 10 challenges and it bears more than a passing resemblence to a challenge from the learnyounode
+series. In this challenge the task is to -
+Building upon the previous "using transforms" second, write a custom
+browserify transform so that in main.js you can simply do:
+
+var txt = require
+        ('/home/ubuntu/.nvm/v0.10.35/lib/node_modules/browserify-adventure/problems/writing_transforms/wake.txt');
+console.log(txt);
+
+and the `txt` output will be formatted with the proper line-numbering as
+from the previous level: printf("%3d %s", lineNum, line) every 5th line
+line numbers starting from zero and four leading spaces on the other
+lines.
+
+Again there is a fairly lengthy discussion and a referal to the stream adventure set of challenges. The solution
+will have a couple of different parts, the main js file and also the tr.js file.
+The files will look like this -
