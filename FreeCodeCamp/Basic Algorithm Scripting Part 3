@@ -106,3 +106,22 @@ function convert(str) {
 
 convert('Dolce & Gabbana');
 
+
+
+Finders Keepers -
+Create a function that looks through an array (first argument) and returns the first element in the array that 
+passes a truth test (second argument). The site suggests using array.some but there is a quicker method that is
+available using array.shift(), there is a great example at this link
+
+http://www.w3schools.com/jsref/jsref_shift.asp
+
+As you can see using this will save a lot of trouble which means that the challenge can be solved by adding just 
+one line to the boilerplate code like this
+
+function find(arr, func) {
+  var num = 0;
+  num = arr.filter(func).shift();
+  return num;
+}
+
+find([1, 2, 3, 4], function(num){ return num % 2 === 0; });
