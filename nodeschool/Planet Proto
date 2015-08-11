@@ -1,7 +1,7 @@
 Thes are my solutions to the Planet Proto set of challenges which deals with prototype in JavaScript
 
 Level 1 -
-The format of these challenges are slightly different to other challenge series. The first cahallenge is in the words
+The formats of these challenges are slightly different to other challenge series. The first cahallenge is in the words
 of the documentation is to 
 Write a program that:
 
@@ -327,4 +327,60 @@ function Vehicle(){
 module.exports = {
 	Robot:    Robot,
 	Vehicle:  Vehicle
+}
+
+
+
+Level 10 -
+The 10th and final challenge is again self generated so this is the combo challenge\solution file -
+
+// -> Define a 'Robot' function constructor
+// -> Create two instances of Robot: 'robby' and 'cranky'
+// -> Both robby and cranky should respond to 'parts' and 'capabilities', these 
+//    should be empty arrays at first
+
+function Robot(){
+	this.parts = [];
+	
+}
+
+Robot.prototype.capabilities = [];
+
+var robby = new Robot();
+
+var cranky = new Robot();
+
+// -> Claim the result of robby.parts
+claim(robby.parts, []);
+// -> Claim the result of cranky.parts
+claim(cranky.parts, []);
+// -> Claim the result of robby.capabilities
+claim(robby.capabilities, []);
+// -> Claim the result of cranky.capabilities
+claim(cranky.capabilities, []);
+
+// -> Add 'core' to robby.parts, cranky.parts should still be empty
+// -> Add 'fly' to robby.capabilities, after doing that cranky.capabilities must 
+//    also have 'fly' without adding to it directly, so this property has to be 
+//    shared
+
+robby.parts.push('core');
+robby.capabilities.push('fly');
+
+// -> Claim the result of robby.parts
+claim(robby.parts, ['core']);
+// -> Claim the result of cranky.parts
+claim(cranky.parts, []);
+// -> Claim the result of robby.capabilities
+claim(robby.capabilities, ['fly']);
+// -> Claim the result of cranky.capabilities
+claim(cranky.capabilities, ['fly']);
+
+
+// ------------------------------------------------
+// Common JS exports for verification, don't modify
+module.exports = {
+	Robot:  Robot,
+	robby:  robby,
+	cranky: cranky
 }
