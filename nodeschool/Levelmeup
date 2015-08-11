@@ -67,16 +67,59 @@ var x = process.argv[2];
 var db = level(x);
 
 for (var i = 0; i < 101; i++) {
-  (function (currKey) {
-    db.get(currKey, function (err, data) {
+  (function (key) {
+    db.get(key, function (err, data) {
       if (err && err.notFound) {
         return;
       }
 
-      console.log("%s=%s", currKey, data);
+      console.log("%s=%s", key, data);
     });
   }("key" + i));
 }
 
-I did spend a lot of time testting various combinations of solutions but this is the quickest, the official 
+I did spend a lot of time testing various combinations of solutions but this is the quickest, the official 
 solution is well worth looking at.
+
+
+
+
+Level 4 PUT Basics -
+The challenge this time is to -
+Write a program that opens a LevelDB data-store using `level`.
+
+The full path to the data-store will be provided to your program as
+the first command-line argument.
+
+The second command-line argument is a string containing a complete
+JSON-encoded object. Parse this object and put each property of
+the object into your data-store where the property name is the entry's
+key and the property value is the entry's value.
+
+Again there are plenty of hints and there is a lot in common with the previous challenge so using these should go
+a long way towards a solution which is here -
+
+var level = require("level");
+var x = process.argv[2];
+var y = process.argv[3];
+var db = level(x);
+var data = JSON.parse(y);
+
+Object.keys(data).forEach(function(key) {
+    db.put(key, data[key], function(err){
+      if(err){
+        throw err;
+      }
+      
+      console.log(key + "" + data[key] );
+    });
+});
+
+The official solution is very quick and clean and is probably better than mine, this is it -
+ var level = require('level')
+  var db = level(process.argv[2])
+  var obj = JSON.parse(process.argv[3])
+  
+  for (var key in obj) {
+    db.put(key, obj[key])
+  }
