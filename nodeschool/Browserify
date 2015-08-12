@@ -217,5 +217,55 @@ line numbers starting from zero and four leading spaces on the other
 lines.
 
 Again there is a fairly lengthy discussion and a referal to the stream adventure set of challenges. The solution
-will have a couple of different parts, the main js file and also the tr.js file.
+will have a couple of different parts, the main js file and also the tr.js file and the transform file.
 The files will look like this -
+
+The main file -
+var txt = require('./wake.txt');
+console.log(txt);
+
+The tr.js file -
+var through = require('through2');
+var split = require('split');
+var quote = require('quote-stream');
+var combiner = require('stream-combiner2');
+var transform = require('./transform.js');
+
+module.exports = function(file){
+  var prefix = through();
+  if(!/\.txt$/.test(file)){
+      return through();
+  }
+  prefix.push("module = ");
+  
+  return combiner([
+        split(),
+        transform, 
+        quote(),
+        prefix
+      ]);
+  
+};
+
+The transform.js file -
+var through = require('through2');
+var sprintf = require("sprintf");
+var lines = 0;
+
+module.exports = through(function(buffer, enc, next) {
+    if(lines % 5 === 0){
+        this.push(sprintf("%3d %s", lines, buffer.toString()));
+    }else{
+        this.push(sprintf("  %s", buffer.toString));
+    }
+     this.push('/n');
+     lines++;
+     next();
+});
+
+I had more issues with this but it seems to be down to path issues like in other challenges, as can be seen the
+transform file and the main file are the previous challenge split into 2 files. The tr.js file is based largely
+on the hints which gave a lot of things, I did have to get help on a couple of things as I was not sure of a couple
+of packages or their use so I am very thankful for all of the help. Also my IDE was very helpful as it has a lot
+of code snippets which proved useful as did looking through and reusing some knowledge from the stream adventure
+and other challenge sets.
