@@ -123,3 +123,35 @@ The official solution is very quick and clean and is probably better than mine, 
   for (var key in obj) {
     db.put(key, obj[key])
   }
+
+
+
+Level 5 Batch Basics -
+This is the fifth challenge and here is the task -
+Write a program that opens a LevelDB data-store using `level`.
+
+The full path to the data-store will be provided to your program as
+the first command-line argument.
+
+The second command-line argument will be a full path to a file
+containing some data you must load in to the data-store. Each line
+of the file will contain two or three strings separated by commas. The
+first string will either be "put" or "del", the second string will be
+a key and in the case of a "put", the third string will be a value.
+
+For example:
+
+  put,@izs,Isaac Z. Schlueter
+  put,@tmpvar,Elijah Insua
+  put,@mrbruning,Max Bruning
+  del,@darachennis
+
+In this case, you have 3 new entries to add, mapping twitter handles
+to real names, and one entry to remove.
+
+You are encouraged to use the `batch()` method for this exercise. A
+batch operation is an atomic, and efficient mechanism for performing
+multiple writes (put and delete).
+
+The solution is relatively straight forward as there are a lot of hints and using the previous examples and 
+combining with the hints should take away most of the difficulties.
