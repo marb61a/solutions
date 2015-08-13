@@ -4,6 +4,8 @@ Level 1 -
 The first challenge is to verify that mongodb is installed properly and there are differences for different platforms
 such as Windows and Linux or even different Linux distros.
 
+
+
 Level 2 - 
 The second challenge is to connect to mongodb, the exact words from the site are -
 You may have to create the data directory.
@@ -22,3 +24,50 @@ be used for the remainder of the exercise.
 I am using cloud9.io an online IDE and the instructions for installing mongodb are here -
 https://docs.c9.io/docs/setting-up-mongodb.
 Following all of these and running mongodb ensures success.
+
+
+
+
+Level 3 -
+This is the first level that asks you to interact with the database, the task is to -
+Here we will learn how to search for documents.
+
+For all of the exercises, the database is learnyoumongo.
+
+So, the url would be something like: mongodb://localhost:27017/learnyoumongo
+
+Use the parrots collection to find all documents where age
+is greater than the first argument passed to your script.
+
+Using console.log, print the documents to stdout.
+
+The solution that I came up with is here but as some places are updating from mongo 2.x to 3.x it may not
+work for all -
+
+var mongo = require("mongodb").MongoClient;
+var birdAge = parseFloat(process.argv[2]);
+var url = 'mongodb://localhost:28017/learnyoumongo';
+var parrots; 
+
+mongo.connect(url, function(err, db){
+    if(err){
+        throw err;
+    }
+    
+    parrots = db.collection('parrots');
+    
+    parrots.find({
+        age: {
+            $gt : +birdAge
+        }
+        }).toArray(function(err, documents){
+        if(err){
+            throw err;
+        } else {
+            console.log(documents);
+        }
+       //db.close(); 
+    });
+});
+
+Also there maybe issues with db.close as open and close are asynchronous.
