@@ -1,0 +1,14 @@
+These are the solutions to the Krypton set of challenges from overthewire. The challenges are cryptography
+based so that will mean learning at least a few things about the area.
+
+Level 0 - 
+As to be expected there is a simple challenge to get started, the challenge is to decode a string using base64 to
+encode. There are many different ways to decode using a base64 decoder, online or even a python script like this
+
+import base64  
+cipher = "S1JZUFRPTklTR1JFQVQ="  
+print base64.decodestring(cipher).
+
+This is a basic challenge but learning about base64 should be a good place to start.
+
+Level 1 
