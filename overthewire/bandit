@@ -243,3 +243,13 @@ Back in the challenge itself, there is a file bandit20-do found when searching. 
 the suid which turns out to be bandit20 which means that it runs with the privileges of bandit20. Running 
 ./bandit20-do cat /etc/bandit_pass/bandit20 searches the bandit20 file for the needed password. This is an example
 of a privilege escalation attack.
+
+
+
+Level 20 - 21
+In this level the task to be accomplished is reasonably similar to the previous challenge, the binary in the home 
+directory do something a little different this time as it makes a connection to localhost on the port you specify 
+as a command line argument, then it reads a line of text from the connection and compares it to the password in the 
+previous level and if the password is correct, it will transmit the password for the next level. There are a couple 
+of ways of solving this challenge the easiest way is to use netcat and set it up as a listening port and then use 
+the binary to connect to the port.
