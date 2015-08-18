@@ -19,8 +19,7 @@ for (var i = 2; i < process.argv.length; i++)
 
 console.log(result)
 
-******* There are other solutions involving slice which should be investigated.
-
+There are also other solutions available involving slice which should be investigated for learning.
 
 
 3 My First IO - 
