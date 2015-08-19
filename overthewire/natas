@@ -124,3 +124,27 @@ Input secret: <input type="text" name="secret" />
 
 As you can see there is a base64 encode which can be reversed using base64 decode and bin2hex can be reversed by
 hex2bin. Performing these actions will give the needed password.
+
+
+
+
+Level 9 -
+In this level the file presented contains the following code
+</pre>
+<h1>natas9</h1>
+<div id="content"><form>
+Find words containing: <input type="text" name="needle" /><input type="submit" name="submit" value="Search" />
+</form>
+Output:
+<pre>
+<? $key = ""; if(array_key_exists("needle", $_REQUEST)) { $key = $_REQUEST["needle"]; } if($key != "") 
+{ passthru("grep -i $key dictionary.txt"); } ?></pre>
+<div id="viewsource"><a href="index-source.html">View sourcecode</a></div>
+</div>
+<pre>
+
+Basically you are given a search box which searches a file called dictionary.txt for words, this is not sanitised
+which is where the main problem lies as unsanitised inputs are always a bad idea. In this case the solution is
+even easier as natas tells where the password file is located and all that has to be done is the proper file
+entered into the search like this
+- cat /etc/natas_webpass/natas10”
