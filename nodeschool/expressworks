@@ -180,5 +180,3 @@ app.get('/books', function(req, res){
 
 app.listen(portNum);
 
-Due to issues with my ide I could not test this properly but other veriified solutions would not work either so
-it is a bug somewhere.
