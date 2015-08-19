@@ -6,6 +6,7 @@ console.log('beep boop');
 
 
 
+
 Level 02  Meet Pipe -
 var fs = require("fs");
 var fileNeeded = process.argv[2];
@@ -16,11 +17,13 @@ There are various combinations of the above for solving the problem but this is 
 
 
 
+
 Level 03 Input Output -
 The challenge is to take data from `process.stdin` and pipe it to `process.stdout`. The documentation
 also warns against overthinking the problem. The solution itself is fairly easy
 
 process.stdin.pipe(process.stdout);
+
 
 
 
@@ -65,6 +68,7 @@ ternary statement in combination with the modulus either one will do as will oth
 
 
 
+
 Level 06 Concat -
 At first glance this exercise appears to be the same as one from the learnyounode challenges but in this you must
 use concat-stream rather than the choice of concat stream or bl. The challenge is described by the documents as this,
@@ -80,6 +84,7 @@ process.stdin.pipe(concat(function(body){
 
 Again as you can see a lot of stuff is the same as other solutions, in the body the string is split, reversed and
 then it is rejoined. These are all functions that are available in javascript.
+
 
 
 
@@ -138,6 +143,7 @@ var stream = ws('ws://localhost:8099');
 stream.write('hello\n');
 
 This is the same as the official solution but there are more ways to do this such as stream.end.
+
 
 
 
@@ -323,5 +329,3 @@ parser.on('entry', function(entry){
 
 process.stdin.pipe(createdDecipher).pipe(gunzip).pipe(parser);
 
-There are others like the official solution and other users which are similar but a lot do not seem to assign most
-items to variables which again is not necessary but I find it to be useful.
