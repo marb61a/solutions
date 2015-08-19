@@ -176,3 +176,26 @@ fs.readFile(filePath, function(err, data) {
 });
 
 The official solution has 2 different versions both of which are well worth investigating.
+
+
+
+Level 6 Streaming -
+The task on this level is -
+Write a program that prints all of the key/value pairs in a LevelDB
+store to the console. You will be provided with the location of the
+store as the first argument on the command-line.
+
+Each entry should be printed on a new line to stdout in the form:
+
+key=value
+
+This is fairly similar to challenges on series such as the stream-adventure series and is easy enough to solve
+like this :
+
+var level = require('level');
+var db = level(process.argv[2]);
+var stream = db.createReadStream();
+
+stream.on('data', function(data){
+  console.log(data.key + '=' + data.value);
+});
