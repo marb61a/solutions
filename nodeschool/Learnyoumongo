@@ -71,3 +71,39 @@ mongo.connect(url, function(err, db){
 });
 
 Also there maybe issues with db.close as open and close are asynchronous.
+
+
+
+Level 4 -
+This challenge is exactly the same as the previous one with one exception in that there is a limit on the records
+returned. The solution is the exact same with only a couple of extra parameters  -
+
+var mongo = require("mongodb").MongoClient;
+var birdAge = parseFloat(process.argv[2]);
+var url = 'mongodb://localhost:27017/learnyoumongo';
+var parrots; 
+
+mongo.connect(url, function(err, db){
+    if(err){
+        throw err;
+    }
+    
+    parrots = db.collection('parrots');
+    
+    parrots.find({
+        age: {
+            $gt : +birdAge
+        }
+        }, {
+            name: 1,
+            age: 1,
+            _id: 0
+        }).toArray(function(err, documents){
+            if(err){
+                throw err;
+            } else {
+                console.log(documents);
+            }
+        db.close(); 
+    });
+});
