@@ -146,3 +146,40 @@ mongo.connect(url, function(err, db) {
 });
 
 Again it is fairly similar to the previous challenges apart from a couple of small differences.
+
+
+
+
+Level 6 -
+This is the sixth challenge and the task is -
+Here we are going to update a document in the users collection.
+
+Say we have a user defined like:
+
+    {
+      "name": "Tina",
+      "age": 30,
+      "username": "tinatime"
+    }
+
+We want to change Tina's age from 30 to 40.
+
+For the purpose of this lesson, assume that the username property is unique.
+The solution is again fairly similar to previous solutions as update is similar to insert etc so the solution should
+look like this -
+
+var mongo = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/learnyoumongo';
+
+mongo.connect(url, function(err, db){
+    if(err) throw err;
+    var users = db.collection('users');
+    users.update({
+    username: 'tinatime'
+    }, {
+    $set: {
+      age: 40
+    }
+  });
+    db.close();
+});
