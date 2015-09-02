@@ -183,3 +183,32 @@ mongo.connect(url, function(err, db){
   });
     db.close();
 });
+
+
+
+
+Level 7 -
+This time the task is to -
+This lesson involves removing a document with the given _id.
+
+The collection name will be passed as the first argument to your script.
+
+The _id will be passed as the second argument to your script.
+This is not much of a description and the challenge hints mean that along with previous challenges code the solution
+should be relatively straightforward like this -
+
+var mongo = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/learnyoumongo';
+var dbPath = process.argv[3];
+var removalPath = process.argv[4];
+
+mongo.connect(url, function(err, db){
+    if(err){
+        throw err;
+    }
+    var collection = db.collection(dbPath);
+    collection.remove({
+        _id: removalPath
+    });
+    db.close();
+});
