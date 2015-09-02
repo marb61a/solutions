@@ -484,3 +484,46 @@ var db = sub(level(path));
 
 db.sublevel('dinosaurs').put('slogan', 'rawr');
 db.sublevel('robots').put('slogan', 'beep boop');
+
+
+
+Level 12 Multilevel -
+This is the final challenge in the series and this time the task is to -
+Write a program that uses multilevel to fetch a value from a server
+running on your computer.
+
+Create a TCP connection with the core `net` module to port 4545
+on localhost. Pipe this connection through a multilevel RPC stream and
+back to the connection. Your code should look like:
+
+  var db = multilevel.client()
+  var connection = net.connect(4545)
+  connection.pipe(db.createRpcStream()).pipe(connection)
+
+You will then have a `db` object that you can interact with like a
+LevelUP object.
+
+Fetch the value from the data store with the key 'multilevelmeup'
+and print it to the console.
+
+You must close the connection after you have fetched the value!
+
+  connection.end()
+
+This should be easy enough as the description gives most of the needed code and with adding the requirements
+it will not take much more - 
+
+var multilevel= require("multilevel");
+var net = require("net");
+var db = multilevel.client();
+var connection = net.connect(4545);
+
+connection.pipe(db.createRpcStream()).pipe(connection);
+
+db.get('multilevelmeup', function(err, data){
+  if(err){
+    throw err;
+  }
+  console.log(data);
+  connection.end(); 
+});
