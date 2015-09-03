@@ -1,3 +1,25 @@
 These are solutions to the Kickoffkoa series of challenges 
+*** Koa will not work on any Node version below 0.11.13
 
-Level 1 -
+
+Level 1 Hello Koa -
+As this is the first challenge of the series this should be a fairly basic challenge to ensure that all is working
+for challenges further down the line. The official definition of the task is this -
+Create a koa server that listens on a port passed from the command line and replies with "hello koa" when an 
+HTTP GET request is sent to /.
+
+The workshop will execute requests against the server and verify the output.
+This will be easy as the hints give most if not all of the code needed so the solution will be -
+
+var koa = require('koa');
+var app = koa();
+var port = process.argv[2];
+
+app.use(function* (){
+    this.body = 'hello koa';
+});
+
+app.listen(port);
+
+Easy enough after reinstalling everything as node version was not high enough.
+
