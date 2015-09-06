@@ -1,0 +1,10 @@
+These are the solutions to the count-to-six set of challenges
+
+Level 1 - 
+As expected the first challenge is basic -
+Just to make sure everything is working, write a program.js that outputs the string "HELLO ES6" to the console. The
+solution is of course -
+
+console.log("HELLO ES6");
+
+Level 2 - 
