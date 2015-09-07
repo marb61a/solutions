@@ -7,4 +7,19 @@ solution is of course -
 
 console.log("HELLO ES6");
 
-Level 2 - 
+Level 2 Template Strings - 
+This is the second challenge and this time the task is the following -
+You will be given a name as the first argument to your program (process.argv[2]). You should output a two-line message
+, first greeting that person, and then telling them their name in lowercase. For example, if the name was "Domenic", 
+you would output:
+
+    Hello, Domenic!
+    Your name lowercased is "domenic".
+
+You can start by doing this using ES5 constructs if you like, but the correct solution should use a single ES6 
+template string, and not use the + operator.
+The solution using ES6 looks a bit different than standard ES5 code -
+
+var name = process.argv[2];
+console.log(`Hello, ${name}!
+Your name lowercased is "${name.toLowerCase()}".`);
