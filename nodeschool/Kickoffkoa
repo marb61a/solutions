@@ -23,3 +23,45 @@ app.listen(port);
 
 Easy enough after reinstalling everything as node version was not high enough.
 
+
+
+Level 2 Routing -
+The task for the second challege is as follows -
+Create a koa server that listen on a port passed from the command line, and returns the following responses from 
+the following routes:
+
+    /    - hello koa
+    /404 - page not found
+    /500 - internal server error
+There are plenty of hints available from the accompanying material so the solution should be quick enough and should
+look like this :
+
+var koa = require('koa');
+var app = koa();
+var port = process.argv[2];
+
+app.use(function* (next){
+    if (this.path !== '/') {
+        return yield next;
+    }
+    
+    this.body = 'hello koa';
+});
+
+app.use(function* (next){
+    if (this.path !== '/404') {
+        return yield next;
+     }
+     
+     this.body = 'page not found';
+});
+
+app.use(function* (next){
+    if (this.path !== '/500') {
+        return yield next;
+     }
+     
+     this.body = 'internal server error';
+});
+
+app.listen(port);
