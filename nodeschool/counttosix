@@ -7,11 +7,13 @@ solution is of course -
 
 console.log("HELLO ES6");
 
+
+
 Level 2 Template Strings - 
 This is the second challenge and this time the task is the following -
-You will be given a name as the first argument to your program (process.argv[2]). You should output a two-line message
-, first greeting that person, and then telling them their name in lowercase. For example, if the name was "Domenic", 
-you would output:
+You will be given a name as the first argument to your program (process.argv[2]). You should output a two-line 
+message,first greeting that person, and then telling them their name in lowercase. For example, if the name was 
+"Domenic", you would output:
 
     Hello, Domenic!
     Your name lowercased is "domenic".
@@ -23,3 +25,34 @@ The solution using ES6 looks a bit different than standard ES5 code -
 var name = process.argv[2];
 console.log(`Hello, ${name}!
 Your name lowercased is "${name.toLowerCase()}".`);
+
+
+
+Level 3 Arrow Functions Part 1 -
+This is the third challenge and the task here is -
+You'll be given a variable number of arguments (process.argv[2] onward) to your program, all of which will be 
+strings. Use arrow functions to perform a map-reduce operation over them, before outputting them to the console. 
+That is, your solution should start with something like:
+
+    var inputs = process.argv.slice(2);
+    var result = inputs.map(/* what goes here? */)
+                        .reduce(/* what goes here? */);
+
+In particular, you should:
+
+  * Map all incoming strings to their first character
+  * Reduce the result by concatenating them together
+
+So an input of ["Hello", "arrow", "functions"] would become "Haf".
+
+To show your work, you should output the transformation to the console. The above example would be:
+
+    [Hello,arrow,functions] becomes "Haf"
+As can be seen this is a fairly substantial challenge but there are plenty of hints and also some parts of the 
+challenge are similar to other series of challenges. The solution should therefore look like this -
+
+var inputs = process.argv.slice(2);
+var result = inputs.map(str => str.charAt(0)).reduce((a, b) => a + b);
+console.log(`[${inputs}] becomes "${result}"`);
+
+It must also be stated that the ` are not quotation marks but accent grave marks.
