@@ -65,3 +65,35 @@ app.use(function* (next){
 });
 
 app.listen(port);
+
+
+
+Level 3 Request_body -
+The third challenge has the following as its task -
+Create a koa server which parse the post data, Convert the name field to
+upper case and respond to client.
+
+If you get this:
+
+    POST / with { name: 'koa' }
+
+Respond with:
+
+    KOA
+Again there are plenty of hints to accompany this challenge and the solution should look like the following -
+
+var koa = require('koa');
+var parse = require('co-body');
+var app = koa();
+var port = process.argv[2];
+
+app.use(function* (next){
+    if(this.method !== 'POST'){
+        return yield next;
+    }
+    
+    var body = yield parse(this);
+    this.body = body.name.toUpperCase();
+});
+
+app.listen(port);
