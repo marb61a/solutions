@@ -97,3 +97,47 @@ app.use(function* (next){
 });
 
 app.listen(port);
+
+
+
+Level 4 Response Body -
+This is the fourth challenge and the task on this occasion is related to the previous one, the task according to
+the information on the challenge is -
+Create an app that returns a stream when the client requests /stream and a JSON body when the client requests /json.
+
+When /json is requested, the output should be
+
+    { foo: 'bar' }
+
+When /stream is requested, the server should respond with the content in file process.argv[3]. Use fs.createReadStream:
+
+    fs.createReadStream(process.argv[3]);
+This again is similar to both the previous challenge and also the stream adventure series of challenges. By using a
+combination of both the solution should be quick and should look like this -
+
+var koa = require('koa');
+var parse = require('co-body');
+var fs = require("fs");
+var app = koa();
+var port = process.argv[2];
+var fStream = process.argv[3];
+
+app.use(function*(next){
+    if(this.path !== '/json'){
+        return yield next;
+    }
+    
+    this.body = { foo: 'bar' };
+});
+
+app.use(function*(next){
+    if(this.path !== '/stream'){
+        return yield next;
+    }
+    
+    this.body = fs.createReadStream(fStream);
+});
+
+app.listen(port);
+
+As can be seen this is a combination of the previous challenges and some other challenges from the stream series.
