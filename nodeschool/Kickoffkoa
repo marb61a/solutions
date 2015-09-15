@@ -141,3 +141,25 @@ app.use(function*(next){
 app.listen(port);
 
 As can be seen this is a combination of the previous challenges and some other challenges from the stream series.
+
+
+
+
+Level 5 -
+This is the fifth of eleven in the series and according to the documentation the task this time is -
+Create an app that checks the Content-Type of the request. If it's application/json, return {message: 'hi!'} with 
+appropriate content headers. Otherwise, return ok as a string.
+There are also quite a lot of hints on how to resolve this challenge so using them alongside previous challenges 
+and the code written should take a lot of the guesswork away which means the solution should look like -
+
+var koa = require('koa');
+var app = koa();
+var port = process.argv[2];
+
+app.use(function*(){
+    this.body = this.request.is('json') ? {message: 'hi!'} : 'ok';
+});
+app.listen(port);
+
+There are a couple of ways that could have been used to solve this but a ternary equation rather than a loop makes
+things much shorter.
