@@ -145,7 +145,7 @@ As can be seen this is a combination of the previous challenges and some other c
 
 
 
-Level 5 -
+Level 5 Content Headers -
 This is the fifth of eleven in the series and according to the documentation the task this time is -
 Create an app that checks the Content-Type of the request. If it's application/json, return {message: 'hi!'} with 
 appropriate content headers. Otherwise, return ok as a string.
