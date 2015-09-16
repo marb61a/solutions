@@ -163,3 +163,44 @@ app.listen(port);
 
 There are a couple of ways that could have been used to solve this but a ternary equation rather than a loop makes
 things much shorter.
+
+
+
+
+Level 6 Middleware -
+The task is this challenge is to -
+Complete the Koa application below, finish two middlewares:
+
+  * responseTime: record each request's response time(ms), set the response header `X-Response-Time`.
+  * upperCase: convert response body to upper case.
+ There are a lot of hints as most of the code is written and only a few things need to be changed. The solution
+ and task combo should look like this - 
+ 
+ var koa = require('koa');
+var app = koa();
+var port = process.argv[2];
+
+app.use(responseTime());
+app.use(upperCase());
+
+app.use(function* () {
+      this.body = 'hello koa';
+});
+    
+function responseTime() {
+  return function* (next) {
+    var start = new Date;
+    yield next;
+    this.set('X-Response-Time', new Date - start);
+};
+}
+
+function upperCase() {
+  return function* (next) {
+    yield next;
+    
+    this.body = this.body.toUpperCase();
+  };
+}
+
+app.listen(port); 
