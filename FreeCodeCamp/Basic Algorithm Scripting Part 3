@@ -178,3 +178,18 @@ function translate(str) {
 }
 
 translate("glove");
+
+
+Boo Who - 
+Check if a value is classified as a boolean primitive. Return true or false.
+
+Boolean primitives are true and false.
+
+There is a very simple solution to this task as Javascript has an operator called typeof which tells what type
+a primitive value is so the solution is very quick -
+
+return typeof bool === 'boolean';
+
+This is probably not the solution that was envisaged as it is a little bit of a hack but it works there is a good
+explanation of the typeof operator at -
+http://www.javascriptkit.com/javatutors/determinevar2.shtml
