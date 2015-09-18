@@ -204,3 +204,44 @@ function upperCase() {
 }
 
 app.listen(port); 
+
+
+
+
+Level 07 Error Handling -
+In this level the task that must be completed is -
+Add an error handler middleware for the koa application below.
+The errorHandler middlware should catch all the downstream errors,
+then responds to the client with internal server error and status 500.
+As with all of the other challenges there are a lot of hints in the accompanying documentation and also some
+boilerplate code. This means that a lot of the solution is already done like the previous challenge and so the
+solution\challenge combo will look like this -
+
+var koa = require('koa');
+var app = koa();
+var port = process.argv[2];
+
+app.use(errorHandler());
+
+app.use(function* () {
+      if (this.path === '/error') {
+            throw new Error('ooops');
+      }    
+      this.body = 'OK';
+    });
+    
+function errorHandler() {
+  return function* (next) {
+    try{
+        yield next;
+    }catch(err){
+        this.body = 'internal server error';
+        this.status = 500;
+    }
+  };
+}
+
+app.listen(port);  
+
+As can be seen there is not much new code but apparently koa is different from other frameworks due to the try\catch
+block being used.
