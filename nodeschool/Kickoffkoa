@@ -208,7 +208,7 @@ app.listen(port);
 
 
 
-Level 07 Error Handling -
+Level 7 Error Handling -
 In this level the task that must be completed is -
 Add an error handler middleware for the koa application below.
 The errorHandler middlware should catch all the downstream errors,
@@ -245,3 +245,45 @@ app.listen(port);
 
 As can be seen there is not much new code but apparently koa is different from other frameworks due to the try\catch
 block being used.
+
+
+
+
+Level 8 Cookie -
+This is the eight challenge of the series and this time the task is to -
+Create an app that use cookie to store user's view times.
+
+  * cookie's key is `view`, you need store the view times in this cookie.
+  * every time request the server, respond must be `{time} views`.
+  * cookie need be `signed`
+
+visit /:
+=>
+respond body: 1 views
+set-cookie: view=1
+
+visit / again:
+=>
+respond body: 2 views
+set-cookie: view=2
+
+As is standard there are plenty of hints which will be used is solving the challenge. This is a slight bit of a 
+departure from the previous sections but again using the hints and previus examples should significantly reduce
+the amount of work needed on the challenge. The solution should look like -
+
+var koa = require('koa');
+var app = koa();
+app.keys = ['secret', 'keys'];
+var port = process.argv[2];
+
+app.use(function* (){
+    var num;
+    num = ~~this.cookies.get('view', {signed: true}) + 1;
+    this.cookies.set('view', num, {signed: true});
+    this.body = num + ' views';
+});
+
+app.listen(port); 
+
+I had to get some help on this as math.floor was causing issues on the first iteration, this is where the double 
+tilde comes in as it is a faster replacement apparently.
