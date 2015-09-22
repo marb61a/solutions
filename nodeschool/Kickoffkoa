@@ -287,3 +287,46 @@ app.listen(port);
 
 I had to get some help on this as math.floor was causing issues on the first iteration, this is where the double 
 tilde comes in as it is a faster replacement apparently.
+
+
+
+
+Level 9 Session -
+In the ninth challenge the task to be completed is - 
+In the previous exercise, we learned how to use cookies to store the user's
+view times.  But in this exercise, we will try to use sessions to do the same
+thing.
+
+visit /:
+=>
+respond body: 1 views
+set-cookie: koa:sess=…
+
+visit / again:
+=>
+respond body: 2 views
+set-cookie: koa:sess=…
+
+As is stated this is a reworking of the previous challenge so the solution should look a lot like the previous
+solution too. There are also plenty of hints so that should go a long way to solving the issues. The solution
+should therefore look like this -
+
+var koa = require('koa');
+var session = require('koa-session');
+var port = process.argv[2];
+var app = koa();
+app.keys = ['secret', 'keys'];
+    
+app.use(session(app));
+
+app.use(function* (){
+    var num;
+    num = ~~this.session.view + 1;
+    this.session.view = num;
+    this.body = num + ' views';
+});
+
+app.listen(port); 
+
+As I am having issues with the install of koa session I am not able to verify the solution but I have asked and
+this seems ok.
