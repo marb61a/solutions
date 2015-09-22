@@ -193,3 +193,40 @@ return typeof bool === 'boolean';
 This is probably not the solution that was envisaged as it is a little bit of a hack but it works there is a good
 explanation of the typeof operator at -
 http://www.javascriptkit.com/javatutors/determinevar2.shtml
+
+
+
+
+Everything be true  -
+Check if the predicate (second argument) returns truthy (defined) for all elements of a collection (first argument).
+For this, check to see if the property defined in the second argument is present on every element of the collection.
+Remember, you can access object properties through either dot notation or [] notation. The solution in this case is
+
+function every(collection, pre) {
+  // Create cycling counter
+  var num = 0;
+  
+  // Check objects, if they have same property or property value increment by 1
+  for(var i in collection){
+    if(collection[i].hasOwnProperty(pre) || collection[i][pre] == pre){
+      num++;
+    }
+  }
+  
+  // Ensure all true have been got
+  if(num == collection.length){
+    return true;
+  } else{
+    return false;
+  }   
+  
+  return pre;
+}
+
+every([{'user': 'Tinky-Winky', 'sex': 'male'}, {'user': 'Dipsy', 'sex': 'male'}, 
+{'user': 'Laa-Laa', 'sex': 'female'}, {'user': 'Po', 'sex': 'female'}], 'sex');
+
+As can been seen the comments explain the method, bascially setup a counter to help cycle through the collection,
+check the objects in the collection for matching property or property value and if so increment by 1. Finally then
+check that all of the collection has been cycled through and return.
+
