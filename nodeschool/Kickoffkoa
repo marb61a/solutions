@@ -330,3 +330,44 @@ app.listen(port);
 
 As I am having issues with the install of koa session I am not able to verify the solution but I have asked and
 this seems ok.
+
+
+
+
+Level 10 Templating -
+This is the tenth and penultimate challenge of the series and this time the task is to -
+Create a koa server that listens on a port passed from the command line and replies with HTML, which is processed 
+ejs template file when an HTTP GET request is sent to /.
+
+The workshop will execute requests against the server and verify the output.
+
+Again there are plenty of hints and boilerplate code and combined with previous examples should considerably leesen
+the work needed. The solution itself will look like this -
+
+var koa = require('koa');
+var views = require('co-views');
+var port = process.argv[2];
+var app = koa();
+
+var render = views(__dirname + '/views', {
+      ext: 'ejs'
+});
+
+var user = {
+      name: {
+        first: 'Tobi',
+        last: 'Holowaychuk'
+      },
+      species: 'ferret',
+      age: 3
+};
+
+app.use(function* (){
+    this.body = yield render('user', {user : user});
+});
+
+app.listen(port); 
+
+There is also a second file but the code involved is already given as part of the hints section. As it transpires
+there is only one line of new code needed to complete the challenge as the rest is boilerplate from the hints or
+previous examples and the rendering is all that needs to be done.
