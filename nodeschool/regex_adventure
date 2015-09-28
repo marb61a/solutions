@@ -1,3 +1,14 @@
 These ar my solutions to the Regex Adventure series of challenges
 
-Level 1 -
+Level 1 Literally - 
+This is the first of the challenges of the series and as usual it is very easy as usual -
+For our first adventure, create a new file that will receive a string as an
+argument and should return whether the string contains another string,
+"LITERALLY".
+There are also plenty of hints and boilerplate that can be used so the solution is fairly obvious -
+
+module.exports = function(str){
+   return /LITERALLY/.test(str);
+};
+
+Anything surrounded by the forward slashes is regarded as a regular expression.
