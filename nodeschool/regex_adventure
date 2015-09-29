@@ -1,4 +1,4 @@
-These ar my solutions to the Regex Adventure series of challenges
+These are my solutions to the Regex Adventure series of challenges
 
 Level 1 Literally - 
 This is the first of the challenges of the series and as usual it is very easy as usual -
@@ -12,3 +12,19 @@ module.exports = function(str){
 };
 
 Anything surrounded by the forward slashes is regarded as a regular expression.
+
+
+
+
+Level 2 Anchor Start -
+The second challenge is very similar to the first as the task is - 
+This time your regex should match only when the given string begins with
+"LITERALLY".
+Again there is boilerplate code and there are also hints which give a pretty good guide to what is needed to
+solve the challenge. The solution is -
+
+module.exports = function(str){
+   return /^LITERALLY/.test(str);
+};
+
+
