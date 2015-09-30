@@ -28,3 +28,14 @@ module.exports = function(str){
 };
 
 
+Level 3 Anchor End - 
+Again the third challenge is a variation on a theme -
+This time your regex should match only when the given string ends with
+"BANANAS".
+As is usual there is boilerplate and hints so the solution should be -
+
+module.exports = function (str) {
+   return /BANANAS$/.test(str);
+};
+
+
