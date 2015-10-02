@@ -28,6 +28,8 @@ module.exports = function(str){
 };
 
 
+
+
 Level 3 Anchor End - 
 Again the third challenge is a variation on a theme -
 This time your regex should match only when the given string ends with
@@ -36,6 +38,19 @@ As is usual there is boilerplate and hints so the solution should be -
 
 module.exports = function (str) {
    return /BANANAS$/.test(str);
+};
+
+
+
+
+Level 4 Character Class -
+The task in this challenge is -
+Write a module that returns true only when the input string starts with a
+lower-case vowel or a digit.
+Again this is a variation of the first challenges and the solution should be similar -
+
+module.exports = function(str){
+   return /^[aeiou0-9]/.test(str);
 };
 
 
