@@ -54,3 +54,13 @@ module.exports = function(str){
 };
 
 
+Level 5 Negated Character Class -
+This time the task is -
+Write a module that returns true only when:
+  the first character is not a digit
+  and the second character is not a capital letter.
+This is a case where the answer is similar to the previous except with negation so the solution should be
+
+module.exports = function(str){
+   return /[^0-9][^A-Z]/.test(str);
+};
