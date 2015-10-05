@@ -81,3 +81,18 @@ should be -
 module.exports = function(str){
    return/\.$/.test(str);
 };
+
+
+
+
+Level 7 Quantifier -
+In this the seventh challenge the task is -
+Export a function that takes a filename string as an argument and returns
+whether the entire filename is a sequence of one or more digits followed by
+`.jpg` or `.jpeg`.
+
+There is as always plenty of hints and boilerplate so the solution should be quick and look like this -
+
+module.exports = function(str){
+  return /\d+\.jpe?g$/.test(str); 
+};
