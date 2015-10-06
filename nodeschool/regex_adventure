@@ -96,3 +96,19 @@ There is as always plenty of hints and boilerplate so the solution should be qui
 module.exports = function(str){
   return /\d+\.jpe?g$/.test(str); 
 };
+
+
+
+
+Level 8 Split -
+The task to be completed on this level is -
+Strings in javascript have a `.split()` method. `.split()` takes an argument
+that can be a string or a regex.
+
+Write a module that accepts a string as its argument and returns an array that
+splits the string on commas separated by arbitrary amounts of whitespace.
+This is similar to both previous challenges and also challenges from other series, the solution is
+
+module.exports = function(str){
+  return str.split(/\s*,\s*/);
+};
