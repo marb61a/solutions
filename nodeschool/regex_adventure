@@ -61,6 +61,22 @@ This time the task is -
 Write a module that returns true only when:
   the first character is not a digit
   and the second character is not a capital letter.
+There are also some valuable hints -
+You won't need these right now, but there are some handy shortcuts for character
+classes:
+
+  * \d - [0-9]        any digit
+  * \w - [A-Za-z_]    word character
+  * \s - [ \t\r\n\f]  whitespace
+
+Capitalize the shortcut escape characters to negate them:
+
+  * \D - [^0-9]        not a digit
+  * \W - [^A-Za-z_]    not a word character
+  * \S - [^ \t\r\n\f]  not whitespace
+
+There is a special character class `.` that matches any character, except for
+newlines (under some conditions).
 This is a case where the answer is similar to the previous except with negation so the solution should be
 
 module.exports = function(str){
@@ -111,4 +127,27 @@ This is similar to both previous challenges and also challenges from other serie
 
 module.exports = function(str){
   return str.split(/\s*,\s*/);
+};
+
+
+
+
+Levevl 9 Capture -
+This time the task involved is -
+In this adventure, export a module that searches for the string `x=` followed by
+numbers and returns the number found after the equal sign.
+There is also a boilerplate template provided and plenty of hints inluding some useful info -
+Instead of calling `.test()`, we can use `.exec()`, which returns a match
+object. If the regex matched the string, the match object will be populated with
+capture groups.
+
+Capture groups are pieces of regex inside of `(` and `)`.
+The text that matches inside the `(` and `)` will be captured and available on
+the match object with square bracket indexes starting from 1 for the leftmost
+group.
+
+The solution will be -
+module.exports = function(str){
+   var m = /x=(\d+)/.exec(str);
+   return m ? m[1] : null;
 };
