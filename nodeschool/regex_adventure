@@ -173,3 +173,28 @@ module.exports = function(str){
   var m = /\bx=(\d+)\b/.exec(str);
   return m ? m[1] : null;
 };
+
+
+
+
+Level 11 Alteration -
+In this the 11th challenge the task to be completed is -
+Export a function that takes a string argument and returns whether the string
+starts with `cat`, `dog`, or `robot` followed by a number to the end of the
+string.
+
+Again there is both boilerplate and hints such as
+You can use the alteration operator `|` to solve this adventure.
+
+The alteration operator matches among possible options:
+
+  /xyz|qrs|tuv/.test('tuv') // true
+
+Alteration operators are often seen in capture groups:
+
+  /0x(ff|00|80)/.test('0x80') // true
+  
+All of this means that the solution will be -
+module.exports = function(str){
+   return /^(cat|dog|robot)\d+$/.test(str);
+};
