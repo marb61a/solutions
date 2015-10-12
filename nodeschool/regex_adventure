@@ -219,3 +219,19 @@ All of the above means that the solution will be -
 module.exports = function(str){
    return /^(0x[A-Fa-f\d]{2}\s+){8}$/.test(str); 
 };
+
+
+
+
+Level 13 Quotes -
+Last challenge of the series and the task here is -
+Write a module that accepts a string as its argument and returns an array of
+the quoted strings contained in the input. Strings will be quoted with double
+quotes. Your program should include the double quotes in its output.
+As is standard in the series there is boilerplate and hints like this -
+You can use `str.match(regex)` to return an array string matches for `regex`
+when the `regex` has `/g` flag enabled.
+All of which means that the solution will be 
+module.exports = function (str) {
+  return str.match(/"[^"]*"/g); 
+};
