@@ -1,4 +1,4 @@
-These are my solutions to the Regex Adventure series of challenges
+      These are my solutions to the Regex Adventure series of challenges
 
 Level 1 Literally - 
 This is the first of the challenges of the series and as usual it is very easy as usual -
@@ -15,7 +15,6 @@ Anything surrounded by the forward slashes is regarded as a regular expression.
 
 
 
-
 Level 2 Anchor Start -
 The second challenge is very similar to the first as the task is - 
 This time your regex should match only when the given string begins with
@@ -29,7 +28,6 @@ module.exports = function(str){
 
 
 
-
 Level 3 Anchor End - 
 Again the third challenge is a variation on a theme -
 This time your regex should match only when the given string ends with
@@ -39,7 +37,6 @@ As is usual there is boilerplate and hints so the solution should be -
 module.exports = function (str) {
    return /BANANAS$/.test(str);
 };
-
 
 
 
@@ -228,10 +225,11 @@ Last challenge of the series and the task here is -
 Write a module that accepts a string as its argument and returns an array of
 the quoted strings contained in the input. Strings will be quoted with double
 quotes. Your program should include the double quotes in its output.
-As is standard in the series there is boilerplate and hints like this -
+As is standard in the series there is boilerplate code to use and hints like this -
 You can use `str.match(regex)` to return an array string matches for `regex`
 when the `regex` has `/g` flag enabled.
-All of which means that the solution will be 
+All of which means that the solution will be -
+
 module.exports = function (str) {
   return str.match(/"[^"]*"/g); 
 };
