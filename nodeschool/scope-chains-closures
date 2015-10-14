@@ -1,3 +1,14 @@
                 The scope-chains-closures series of challenges
   
-  Level 1               
+Level 1 - Scopes
+This level has a lot of notes on the various scopes available within javascript, the challenge itself is fairly
+basic as the solution will show -
+
+function foo (){
+  var bar;  
+};
+
+
+
+
+Level 2 
