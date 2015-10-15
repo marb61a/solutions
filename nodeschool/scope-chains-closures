@@ -1,6 +1,6 @@
                 The scope-chains-closures series of challenges
   
-Level 1 - Scopes
+Level 1 Scopes -
 This level has a lot of notes on the various scopes available within javascript, the challenge itself is fairly
 basic as the solution will show -
 
@@ -11,4 +11,16 @@ function foo (){
 
 
 
-Level 2 
+Level 2 Scope Chains -
+This is an extension of the previous level -
+Modify your solution from lesson 1 so foo contains a function zip
+which itself contains one variable lexically scoped called quux
+
+The solution again is very easy -
+
+function foo (){
+    function zip(){
+        var quux
+    }
+  var bar;  
+};
