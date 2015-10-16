@@ -24,3 +24,21 @@ function foo (){
     }
   var bar;  
 };
+
+
+
+
+Level 3 Global Scope and Shadowing
+The third task is again an extension of the previous challenge -
+Starting with your solution from the previous lesson, assign a value to quux
+inside foo() (don't use var or let). The value should be different to the
+value assigned when defining quux inside zip().
+In spit of the lengthy discussion the solution is relatively straightforward - 
+
+function foo (){
+    quux = 0;
+    function zip(){
+        var quux
+    }
+  var bar;  
+};
