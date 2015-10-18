@@ -28,7 +28,7 @@ function foo (){
 
 
 
-Level 3 Global Scope and Shadowing
+Level 3 Global Scope and Shadowing - 
 The third task is again an extension of the previous challenge -
 Starting with your solution from the previous lesson, assign a value to quux
 inside foo() (don't use var or let). The value should be different to the
@@ -41,4 +41,24 @@ function foo (){
         var quux
     }
   var bar;  
+};
+
+
+
+
+Level 4 Closures -
+This is the 4th and penultimate challenge and the task this time is -
+Modify your solution from the previous lesson to set bar = true inside zip(),
+then return the function zip as the result of foo()
+Again there is a lengthy discussion of how closures work which informs the solution which again is a continuation
+of the previous challenge and looks like this -
+
+function foo (){
+    quux = 0;
+    function zip(){
+        var quux
+        bar = true;
+    }
+    var bar; 
+    return zip;
 };
