@@ -10,7 +10,6 @@ function foo (){
 
 
 
-
 Level 2 Scope Chains -
 This is an extension of the previous level -
 Modify your solution from lesson 1 so foo contains a function zip
@@ -24,7 +23,6 @@ function foo (){
     }
   var bar;  
 };
-
 
 
 
@@ -45,7 +43,6 @@ function foo (){
 
 
 
-
 Level 4 Closures -
 This is the 4th and penultimate challenge and the task this time is -
 Modify your solution from the previous lesson to set bar = true inside zip(),
@@ -62,7 +59,6 @@ function foo (){
     var bar; 
     return zip;
 };
-
 
 
 
