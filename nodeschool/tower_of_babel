@@ -1,4 +1,9 @@
                         Tower of Babel
       These are my solutions to the Tower of Babel problem series from Nodeschool
                         
-Level 1                         
+Level 1 Setup Babel -                        
+The first challenge is to install babel properly and run a hello world like this 
+  - npm install babel -g with the g option for global installation
+  
+Then to run the verification 
+  - babel-node program15.js (as my program is program 15)
