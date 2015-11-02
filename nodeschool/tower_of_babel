@@ -142,3 +142,45 @@ var player = new Player(+x, +y, name);
 player.damage();
 player.move(7, 8);
 console.log(player.toString());
+
+
+
+
+Level 4 Modules With Name -
+Again in the fourth level there is boilerplate code which needs to be adjusted to ES6 style code. In this task
+however there is a need for 2 files. The code to be adjusted is this -
+  exports.PI = 3.141592;
+    
+    var _sqrt = function(s, x, last){
+      return x != last ? _sqrt(s, (x + s / x) / 2.0, x) : x;
+    };
+    exports.sqrt = function(s){
+      return _sqrt(s, s/2.0, 0.0);
+    };
+    exports.square = function(x) {
+      return x * x;
+    };
+
+The solution including both files is this -
+
+Executable -
+var arg1 = process.argv[2];
+var arg2 = process.argv[3];
+import {PI, sqrt, square} from './program15.js' ;
+
+console.log(PI);
+console.log(sqrt(+arg1));
+console.log(square(+arg2));
+
+Module - 
+export const PI = 3.141592;
+
+var _sqrt = function(s, x, last){
+  return x != last ? _sqrt(s, (x + s / x) / 2.0, x) : x;
+};
+export function sqrt(s){
+  return _sqrt(s, s/2.0, 0.0);
+};
+export function square(x) {
+  return x * x;
+};
