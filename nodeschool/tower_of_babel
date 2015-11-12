@@ -253,3 +253,25 @@ try {
   // but an `c is not defined` error should occur.
   console.log(e);
 }
+
+
+
+
+Level 7 Computed Property -
+In this challenge the task is to make use of a new ES6 feature called Computed Property. You are asked to rewrite
+the following code using the feature -
+
+    var evenOrOdd = +process.argv[2];
+    var evenOrOddKey = evenOrOdd % 2 === 0 ? "even" : "odd";
+    var sum = +process.argv[3] + evenOrOdd;
+    var obj = {};
+    obj[evenOrOddKey] = evenOrOdd;
+    obj[sum] = sum;
+    console.log(obj);
+
+The solution is  -
+
+console.log({
+  [+process.argv[2] % 2 === 0 ? "even" : "odd"]: +process.argv[2],
+  [+process.argv[2] + +process.argv[3]]: +process.argv[2] + +process.argv[3],
+});
