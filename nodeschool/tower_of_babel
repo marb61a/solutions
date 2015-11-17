@@ -275,3 +275,39 @@ console.log({
   [+process.argv[2] % 2 === 0 ? "even" : "odd"]: +process.argv[2],
   [+process.argv[2] + +process.argv[3]]: +process.argv[2] + +process.argv[3],
 });
+
+
+
+
+Level 8 Iterator For Of -
+In the eight challenge of the series the task is to make use of the new ES6 feature 'for of' which greatly
+expands the capabilities of the standard for loop and can be used on a much greater collection set than arrays.
+Once again the task is to change boilerplate code provided to utilise this feature, the solution is this -
+
+const max = +process.argv[2];
+let FizzBuzz = {
+  [Symbol.iterator]() {
+    let num = 1;
+    return {
+      next() {
+        if (num > max) {
+          return { done: true };
+        }
+        let value = num;
+        if (value % 15 === 0) {
+          value = 'FizzBuzz';
+        } else if (value % 3 === 0) {
+          value = 'Fizz';
+        } else if (value % 5 === 0) {
+          value = 'Buzz';
+        }
+        num++;
+        return { done: false, value: value };
+      }
+    };
+  }
+};
+
+for (var n of FizzBuzz) {
+  console.log(n);
+}
