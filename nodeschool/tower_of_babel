@@ -311,3 +311,31 @@ let FizzBuzz = {
 for (var n of FizzBuzz) {
   console.log(n);
 }
+
+
+
+
+Level 9 Generator -
+The task in this challenge is to rework the previous example to use the more efficient Generator syntax, this means that
+the solution will be this -
+
+const max = process.argv[2];
+let FizzBuzz = function* (){
+  let num = 1;
+  while (num <= max) {
+    let value = num;
+    num++;
+    if (value % 15 === 0) {
+      value = 'FizzBuzz';
+    } else if (value % 3 === 0) {
+      value = 'Fizz';
+    } else if (value % 5 === 0) {
+      value = 'Buzz';
+    }
+    yield value;
+  }
+}();
+
+for (var n of FizzBuzz) {
+  console.log(n);
+}
